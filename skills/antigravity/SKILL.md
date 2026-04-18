@@ -1,52 +1,63 @@
 ---
-description: Envia prompts ao Antigravity IDE e captura a resposta via clipboard, entregando ao OpenClaw via REST API.
-status: WIP
+name: antigravity-bridge
+description: >
+  Delega tarefas complexas de programação para o Antigravity IDE (Gemini / Claude Sonnet)
+  e retorna a resposta diretamente para o agente OpenClaw via REST API.
+status: READY
+trigger: >
+  Ative esta skill sempre que a tarefa de programação exigir raciocínio de alta fidelidade
+  ou quando o contexto de código for grande demais para o modelo atual do OpenClaw.
 ---
 
-# Skill: Antigravity Bridge
+# Skill: Antigravity Bridge (Evolved)
 
-Permite ao OpenClaw delegar tarefas ao Antigravity IDE e receber a resposta de volta.
+Esta skill permite que o OpenClaw delegue tarefas ao Antigravity IDE e receba a resposta de volta de forma direta, sem intermediários.
 
-## Fluxo
+## Como funciona (Fluxo Direto)
 
 ```
-OpenClaw
-   │
-   ▼ execute.ps1 (digita prompt via SendKeys)
-Antigravity IDE
-   │
-   ▼ monitor-response.ps1 (polling via clipboard)
-POST http://localhost:18789/v1/responses
-   │
-   ▼
-OpenClaw recebe a resposta
+[OpenClaw Agent]
+      │
+      ▼  executa
+[scripts/bidirectional.ps1 -Prompt "..."]
+      │
+      ▼  abre + injeta prompt via GUI
+[Antigravity IDE (Gemini / Claude)]
+      │
+      ▼  bidirectional.ps1 monitora clipboard
+[POST http://localhost:18789/v1/responses]
+      │
+      ▼
+[OpenClaw Agent recebe e processa]
 ```
 
-## Scripts
+## Passos de uso
 
-| Script | Funcao |
-|--------|--------|
-| `scripts/execute.ps1` | Foca a janela do Antigravity e injeta o prompt via teclado |
-| `scripts/monitor-response.ps1` | Aguarda estabilizacao do clipboard e envia resposta ao OpenClaw |
+1. **Construa um prompt completo** com todo o contexto (código, erro, objetivo).
+2. **Execute o script**:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File scripts/bidirectional.ps1 `
+       -Prompt "<prompt completo>"
+   ```
+3. **Ficou pronto?** O OpenClaw receberá a resposta via POST da própria execução do script. Você não precisa fazer polling manual pois a resposta será injetada no seu fluxo de entrada.
 
-## Requisitos
+## Parâmetros do script
 
-- `agy` instalado no PATH
-- Antigravity IDE aberto
-- OpenClaw rodando em http://localhost:18789
+| Parâmetro         | Obrigatório | Padrão                                  | Descrição                        |
+|-------------------|-------------|-----------------------------------------|----------------------------------|
+| `-Prompt`         | ✅          | —                                       | Tarefa completa para o Antigravity |
+| `-WebhookUrl`     | ❌          | `http://localhost:18789/v1/responses`   | API REST do OpenClaw             |
+| `-Token`          | ❌          | (Token estático configurado)            | Bearer Token para autenticação   |
+| `-TimeoutSeconds` | ❌          | `180`                                   | Tempo máximo de espera           |
 
-## Como invocar
+## Pré-requisitos
 
-```powershell
-# Apenas envia o prompt (fire-and-forget)
-.\scripts\execute.ps1 -Prompt "sua tarefa aqui"
-
-# Envia e aguarda resposta (bidirecional)
-.\scripts\monitor-response.ps1 -Prompt "sua tarefa aqui"
-```
+- `agy` instalado e disponível no PATH.
+- Antigravity IDE aberto.
+- OpenClaw REST API habilitada na porta 18789.
 
 ## Notas
 
-- O token Bearer esta em C:\Users\Luna\.openclaw\openclaw.json
-- Nao usar prefixo /telegram nos prompts
-- O Antigravity deve estar visivel (nao minimizado) para o SendKeys funcionar
+- **Evolução**: Esta versão elimina o `webhook-server.js` externo e o Telegram da rota de retorno.
+- **Robustez**: O script detecta automaticamente janelas nomeadas como "Antigravity" ou "agy".
+- **Limpeza**: Prompts não levam mais o prefixo `/telegram` para evitar loops de resposta automática.
