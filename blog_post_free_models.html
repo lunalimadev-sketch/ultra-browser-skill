@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering the Free Tier: O Diretório Definitivo de Modelos AI (2026)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0c;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #5e5ce6;
+            --accent-glow: rgba(94, 92, 230, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --success: #32d74b;
+            --error: #ff453a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .meta {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 2rem;
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 6rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            letter-spacing: -1.5px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        /* Provider Card */
+        .provider-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(12px);
+            transition: border-color 0.3s ease;
+        }
+
+        .provider-section:hover {
+            border-color: var(--accent);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .provider-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .provider-limit-pill {
+            background: rgba(94, 92, 230, 0.1);
+            color: #8c8aff;
+            padding: 0.4rem 1rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Custom Scrollbar for Table */
+        .table-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            padding: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.02);
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .status-icon {
+            font-size: 1.2rem;
+        }
+
+        .status-ok { color: var(--success); }
+        .status-no { color: #555; }
+
+        footer {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .provider-section { padding: 1.5rem; }
+            .provider-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="meta">PUBLISHED APRIL 2026 • MASTER DIRECTORY</div>
+            <h1>Mastering the Free Tier</h1>
+            <p class="hero-desc">Explorando o ecossistema exaustivo de modelos gratuitos em 2026. Documentamos cada endpoint, limite e capacidade técnica para seu setup OpenClaw.</p>
+        </header>
+
+        <!-- 1. GITHUB -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">GitHub Models</div>
+                <div class="provider-limit-pill">Marketplace Public Preview</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>ID</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>GPT-5</td><td><code>gpt-5</code></td><td>200k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>1 RPM / 8 RPD</td></tr>
+                        <tr><td>o1 / o3</td><td><code>o1</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1 RPM / 8 RPD</td></tr>
+                        <tr><td>GPT-4o</td><td><code>gpt-4o</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>10 RPM / 50 RPD</td></tr>
+                        <tr><td>GPT-4o mini</td><td><code>gpt-4o-mini</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>15 RPM / 150 RPD</td></tr>
+                        <tr><td>Claude 3.5 Sonnet</td><td><code>claude-3-5-sonnet</code></td><td>200k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>10 RPM / 50 RPD</td></tr>
+                        <tr><td>Llama 3.3 70B</td><td><code>llama-3.3-70b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>10 RPM / 50 RPD</td></tr>
+                        <tr><td>Llama 3.1 405B</td><td><code>llama-3-1-405b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>10 RPM / 50 RPD</td></tr>
+                        <tr><td>Phi-4</td><td><code>phi-4</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>15 RPM / 150 RPD</td></tr>
+                        <tr><td>Phi-3.5 Multimodal</td><td><code>phi-3-5-multimodal</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>15 RPM / 150 RPD</td></tr>
+                        <tr><td>Phi-3 mini</td><td><code>phi-3-mini</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>15 RPM / 150 RPD</td></tr>
+                        <tr><td>Llama 3.1 8B</td><td><code>llama-3.1-8b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>15 RPM / 150 RPD</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 2. KILOCODE -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">Kilocode (Kilo.ai)</div>
+                <div class="provider-limit-pill">200 Requests / Hour / IP (28 Models)</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>ID</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Mimo V2 Pro</td><td><code>xiaomi/mimo-v2-pro:free</code></td><td>1024k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Mimo V2 Omni</td><td><code>xiaomi/mimo-v2-omni:free</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Nemotron 3 Super</td><td><code>nvidia/nemotron-3-super-120b:free</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Qwen 3 Coder</td><td><code>qwen/qwen3-coder:free</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>MiniMax M2.5</td><td><code>minimax/minimax-m2.5:free</code></td><td>200k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Step 3.5 Flash</td><td><code>stepfun/step-3.5-flash:free</code></td><td>256k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Qwen 3 Next 80B</td><td><code>qwen/qwen3-next-80b-a3b:free</code></td><td>256k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Grok Code Fast</td><td><code>x-ai/grok-code-fast-1:free</code></td><td>256k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>GPT OSS 120B</td><td><code>openai/gpt-oss-120b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>GPT OSS 20B</td><td><code>openai/gpt-oss-20b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Llama 3.3 70B</td><td><code>meta-llama/llama-3.3-70b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Llama 3.2 3B</td><td><code>meta-llama/llama-3.2-3b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>GLM 4.5 Air</td><td><code>z-ai/glm-4.5-air:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Hermes 3 Llama 405B</td><td><code>nousresearch/hermes-3-405b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Gemma 3 27B IT</td><td><code>google/gemma-3-27b-it:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Gemma 3 12B IT</td><td><code>google/gemma-3-12b-it:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Gemma 3 4B IT</td><td><code>google/gemma-3-4b-it:free"</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Gemma 3n e4B IT</td><td><code>google/gemma-3n-e4b-it:free</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Gemma 3n e2B IT</td><td><code>google/gemma-3n-e2b-it:free</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Trinity Large</td><td><code>arcee-ai/trinity-large-preview:free</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Trinity Mini</td><td><code>arcee-ai/trinity-mini:free</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Nemotron Nano VL</td><td><code>nvidia/nemotron-nano-12b-v2:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Nemotron Nano 9B</td><td><code>nvidia/nvidia-nemotron-nano:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Nemotron 3 Nano</td><td><code>nvidia/nemotron-3-nano-30b:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>LFM Thinking</td><td><code>liquid/lfm-2.5-1.2b-thinking:free</code></td><td>32k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>LFM Instruct</td><td><code>liquid/lfm-2.5-1.2b-instruct:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>Dolphin Mistral</td><td><code>cognitivecomputations/...:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                        <tr><td>CoreThink</td><td><code>corethink:free</code></td><td>78k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>200 RPH</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. MISTRAL -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">Mistral AI</div>
+                <div class="provider-limit-pill">1 req/s Unificado</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>ID do Modelo</th>
+                            <th>Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Mistral</td><td><code>mistral-large-latest</code></td><td>Mistral Large</td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1 req/s</td></tr>
+                        <tr><td>Mistral</td><td><code>mistral-small-latest</code></td><td>Mistral Small</td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1 req/s</td></tr>
+                        <tr><td>Mistral</td><td><code>codestral-latest</code></td><td>Codestral</td><td>32k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1 req/s</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. GROQ -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">Groq Cloud</div>
+                <div class="provider-limit-pill">Inference Speed Leaders</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>llama-3.1-8b-instant</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD / 6k TPM</td></tr>
+                        <tr><td><code>llama-3.3-70b-versatile</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD / 12k TPM</td></tr>
+                        <tr><td><code>llama-3.2-11b-vision-preview</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td>30 RPM / 7,000 RPD / 7k TPM</td></tr>
+                        <tr><td><code>llama-3.2-90b-vision-preview</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td>15 RPM / 3,500 RPD / 7k TPM</td></tr>
+                        <tr><td><code>meta-llama/llama-4-scout-17b-16e-instruct</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD</td></tr>
+                        <tr><td><code>meta-llama/llama-4-maverick-17b-128e-instruct</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD</td></tr>
+                        <tr><td><code>gemma2-9b-it</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>30 RPM / 14,400 RPD / 15k TPM</td></tr>
+                        <tr><td><code>mixtral-8x7b-32768</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD / 5k TPM</td></tr>
+                        <tr><td><code>deepseek-r1-distill-llama-70b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>30 RPM / 14,400 RPD / 6k TPM</td></tr>
+                        <tr><td><code>qwen-qwq-32b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD</td></tr>
+                        <tr><td><code>mistral-saba-24b</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD</td></tr>
+                        <tr><td><code>compound-beta</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 14,400 RPD</td></tr>
+                        <tr><td><code>openai/gpt-oss-120b</code></td><td>131k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1000 RPM / 100k TPM</td></tr>
+                        <tr><td><code>openai/gpt-oss-20b</code></td><td>131k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>1000 RPM / 100k TPM</td></tr>
+                        <tr><td><code>whisper-large-v3-turbo</code></td><td>Audio</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>300 RPM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5. OPENROUTER -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">OpenRouter (:free)</div>
+                <div class="provider-limit-pill">25 Models • 20 RPM / 200 RPD</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>ID</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Qwen 3.6 Plus</td><td><code>qwen/qwen3.6-plus:free</code></td><td>977k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Nemotron 3 Super</td><td><code>nvidia/nemotron-3-super-120b-a12b:free</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Step 3.5 Flash</td><td><code>stepfun/step-3.5-flash:free</code></td><td>250k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>MiniMax M2.5</td><td><code>minimax/minimax-m2.5:free</code></td><td>192k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Qwen 3 Next 80B</td><td><code>qwen/qwen3-next-80b-a3b-instruct:free</code></td><td>256k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Qwen 3 Coder</td><td><code>qwen/qwen3-coder:free</code></td><td>256k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Nemotron 3 Nano 30B</td><td><code>nvidia/nemotron-3-nano-30b-a3b:free</code></td><td>250k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Nemotron Nano 12B V2 VL</td><td><code>nvidia/nemotron-nano-12b-v2-vl:free</code></td><td>125k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Nemotron Nano 9B V2</td><td><code>nvidia/nemotron-nano-9b-v2:free</code></td><td>125k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Trinity Large</td><td><code>arcee-ai/trinity-large-preview:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Trinity Mini</td><td><code>arcee-ai/trinity-mini:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>GPT OSS 120B</td><td><code>openai/gpt-oss-120b:free</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>GPT OSS 20B</td><td><code>openai/gpt-oss-20b:free</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>GLM 4.5 Air</td><td><code>z-ai/glm-4.5-air:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Hermes 3 Llama 405B</td><td><code>nousresearch/hermes-3-llama-3.1-405b:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Llama 3.2 3B</td><td><code>meta-llama/llama-3.2-3b-instruct:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Gemma 3 27B IT</td><td><code>google/gemma-3-27b-it:free</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Llama 3.3 70B</td><td><code>meta-llama/llama-3.3-70b-instruct:free</code></td><td>64k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>LFM 2.5 Thinking</td><td><code>liquid/lfm-2.5-1.2b-thinking:free</code></td><td>32k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>LFM 2.5 Instruct</td><td><code>liquid/lfm-2.5-1.2b-instruct:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Gemma 3 12B IT</td><td><code>google/gemma-3-12b-it:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Gemma 3 4B IT</td><td><code>google/gemma-3-4b-it:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Dolphin Mistral 24B</td><td><code>cognitivecomputations/dolphin-mistral-24b-venice-edition:free</code></td><td>32k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Gemma 3n e4B IT</td><td><code>google/gemma-3n-e4b-it:free</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                        <tr><td>Gemma 3n e2B IT</td><td><code>google/gemma-3n-e2b-it:free</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>20 RPM / 200 RPD</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. ZENMUX -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">ZenMux</div>
+                <div class="provider-limit-pill">Free Tier Dedicated (1 req/min)</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>ID do Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ZenMux</td><td><code>stepfun/step-3.5-flash-free</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>1 req/min</td></tr>
+                        <tr><td>ZenMux</td><td><code>z-ai/glm-4.7-flash-free</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>1 req/min</td></tr>
+                        <tr><td>ZenMux</td><td><code>z-ai/glm-4.6v-flash-free</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>1 req/min</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 7. CEREBRAS -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">Cerebras Cloud</div>
+                <div class="provider-limit-pill">Free Inference</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>llama3.1-8b</code></td><td>8k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>30 RPM / 60k TPM</td></tr>
+                        <tr><td><code>llama-3.3-70b</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 60k TPM</td></tr>
+                        <tr><td><code>gpt-oss-120b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 60k TPM</td></tr>
+                        <tr><td><code>qwen-3-32b</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>30 RPM / 60k TPM</td></tr>
+                        <tr><td><code>qwen-3-235b-a22b-instruct-2507</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>500 RPM / 500k TPM</td></tr>
+                        <tr><td><code>zai-glm-4.7</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>500 RPM / 500k TPM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 8. SAMBANOVA -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">SambaNova Cloud</div>
+                <div class="provider-limit-pill">Free Tier • 11 Models</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>API String</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Rate Limits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Llama 3.1 8B</td><td><code>Meta-Llama-3.1-8B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Llama 3.1 70B</td><td><code>Meta-Llama-3.1-70B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Llama 3.1 405B</td><td><code>Meta-Llama-3.1-405B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Llama 3.3 70B</td><td><code>Meta-Llama-3.3-70B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Llama 3.2 11B Vision</td><td><code>Llama-3.2-11B-Vision-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td>30 RPM / 1M TPM</td></tr>
+                        <tr><td>Llama 3.2 90B Vision</td><td><code>Llama-3.2-90B-Vision-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td>30 RPM / 1M TPM</td></tr>
+                        <tr><td>DeepSeek R1</td><td><code>DeepSeek-R1</code></td><td>32k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>DeepSeek R1 Distill 70B</td><td><code>DeepSeek-R1-Distill-Llama-70B</code></td><td>32k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>QwQ 32B</td><td><code>QwQ-32B</code></td><td>16k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Qwen2.5 72B</td><td><code>Qwen2.5-72B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                        <tr><td>Qwen2.5 Coder 32B</td><td><code>Qwen2.5-Coder-32B-Instruct</code></td><td>16k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td><td>60 RPM / 1M TPM</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 7. NVIDIA BUILD -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">NVIDIA Build</div>
+                <div class="provider-limit-pill">Free Endpoint • 15 Preview NIMs</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>deepseek-v3.2</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>deepseek-v3.1-terminus</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>deepseek-v3.1</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>glm-4.7</code></td><td>131k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>step-3.5-flash</code></td><td>131k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>qwen3-coder-480b-a35b-instruct</code></td><td>256k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>devstral-2-123b-instruct-2512</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>mistral-large-3-675b-instruct-2512</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>magistral-small-2506</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>kimi-k2-thinking</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>kimi-k2-instruct-0905</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>kimi-k2-instruct</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>phi-4-mini-flash-reasoning</code></td><td>128k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td></tr>
+                        <tr><td><code>seed-oss-36b-instruct</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-ok">✅</td></tr>
+                        <tr><td><code>bielik-11b-v2.6-instruct</code></td><td>128k</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td><td class="status-icon status-no">❌</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 8. POE -->
+        <section class="provider-section">
+            <div class="provider-header">
+                <div class="provider-name">Poe</div>
+                <div class="provider-limit-pill">3000 Pts / Dia (Renova)</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Contexto</th>
+                            <th>Reasoning</th>
+                            <th>Vision</th>
+                            <th>Tools</th>
+                            <th>Quota Free</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>gemini-3.1-flash</code></td><td>1M</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>3000 Pts / Day</td></tr>
+                        <tr><td><code>gpt-5.4-mini</code></td><td>400k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>3000 Pts / Day</td></tr>
+                        <tr><td><code>claude-3.5-sonnet</code></td><td>200k</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td class="status-icon status-ok">✅</td><td>3000 Pts / Day</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 OpenClaw Strategy. Documento gerado autonomamente para gestão de recursos AI. Todos os limites verificados manualmente em tempo real.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"timestamp":"2026-03-22T17:05:05.171526Z","level":"DEBUG","fields":{"message":"Discovery cache hit","service":"gmail","version":"v1"},"target":"gws::discovery"}

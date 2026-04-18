@@ -1,0 +1,26 @@
+Total: 25
+qwen/qwen3.6-plus:free | 977k
+nvidia/nemotron-3-super-120b-a12b:free | 256k
+minimax/minimax-m2.5:free | 192k
+stepfun/step-3.5-flash:free | 250k
+arcee-ai/trinity-large-preview:free | 128k
+liquid/lfm-2.5-1.2b-thinking:free | 32k
+liquid/lfm-2.5-1.2b-instruct:free | 32k
+nvidia/nemotron-3-nano-30b-a3b:free | 250k
+arcee-ai/trinity-mini:free | 128k
+nvidia/nemotron-nano-12b-v2-vl:free | 125k
+qwen/qwen3-next-80b-a3b-instruct:free | 256k
+nvidia/nemotron-nano-9b-v2:free | 125k
+openai/gpt-oss-120b:free | 128k
+openai/gpt-oss-20b:free | 128k
+z-ai/glm-4.5-air:free | 128k
+qwen/qwen3-coder:free | 256k
+cognitivecomputations/dolphin-mistral-24b-venice-edition:free | 32k
+google/gemma-3n-e2b-it:free | 8k
+google/gemma-3n-e4b-it:free | 8k
+google/gemma-3-4b-it:free | 32k
+google/gemma-3-12b-it:free | 32k
+google/gemma-3-27b-it:free | 128k
+meta-llama/llama-3.3-70b-instruct:free | 64k
+meta-llama/llama-3.2-3b-instruct:free | 128k
+nousresearch/hermes-3-llama-3.1-405b:free | 128k

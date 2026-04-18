@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTENSIC | Inovação Aeroespacial</title>
+    <meta name="description" content="Instituição Científica, Tecnológica e de Inovação especializada no desenvolvimento aeroespacial em Campinas/SP.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L22 22H2L12 2Z" stroke="#00E5FF" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="12" cy="15" r="3" fill="#FFC107"/>
+            </svg>
+            INTENSIC
+        </a>
+        <ul class="nav-links">
+            <li><a href="#sobre">Instituição</a></li>
+            <li><a href="#servicos">Pesquisa & Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="menu-toggle">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="assets/hero_aerospace.png" alt="Futuristic aerospace facility" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Desbravando a <span class="text-gradient">Fronteira Aeroespacial</span></h1>
+            <p>A INTENSIC é a ponta de lança em inovação. Como uma Instituição Científica e Tecnológica (ICT), impulsionamos o desenvolvimento orbital e suborbital do Brasil para o mundo.</p>
+            <div class="btn-group">
+                <a href="#servicos" class="btn btn-primary">Nossos Projetos</a>
+                <a href="#cta" class="btn btn-gold">Faça Parte</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="sobre" class="about reveal">
+        <div class="about-content">
+            <h2>Sobre a Instituição</h2>
+            <p>Localizada no polo tecnológico de Campinas/SP, a INTENSIC (Instituição Científica, Tecnológica e de Inovação) atua no desenvolvimento de matrizes de alto desempenho para o setor aeroespacial.</p>
+            <br>
+            <p>Nossos laboratórios reúnem as mentes mais brilhantes do país num esforço colaborativo para desenvolver soluções em propulsão avançada, novos materiais e sistemas de navegação autônomos. Acreditamos que a exploração do espaço não é apenas um feito científico, mas a fundação de incontáveis melhorias para a vida na Terra.</p>
+        </div>
+        <div class="about-image">
+            <img src="assets/lab_innovation.png" alt="Aerospace research laboratory">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="reveal">
+        <h2>Áreas de Pesquisa & Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card glass">
+                <div class="service-icon">⚡</div>
+                <h3 class="brand-font">Propulsão e Energia</h3>
+                <p>Pesquisa aplicada em motores iônicos, sistemas propulsivos sustentáveis e testes de estabilidade termodinâmica em ambientes de microgravidade.</p>
+            </div>
+            <div class="service-card glass">
+                <div class="service-icon">🛰️</div>
+                <h3 class="brand-font">Satelitização Autônoma</h3>
+                <p>Desenvolvimento e validação de CubeSats e satélites de observação, focando em sistemas autônomos de constelações com integração algorítmica.</p>
+            </div>
+            <div class="service-card glass">
+                <div class="service-icon">🛡️</div>
+                <h3 class="brand-font">Novos Materiais</h3>
+                <p>Ensaios mecânicos e térmicos em ligas exóticas, compostos de fibra de carbono e estruturas de proteção térmica projetadas para reentrada atmosférica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta reveal">
+        <img src="assets/cta_space.png" alt="Earth from space" class="cta-bg">
+        <h2>Pronto para Lançar Sua Visão?</h2>
+        <p>A nova era comercial e investigativa do espaço exige parcerias sólidas. Conecte sua empresa, universidade ou iniciativa governamental aos recursos de ponta da INTENSIC.</p>
+        <a href="#contato" class="btn btn-gold" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Agendar Sessão Estratégica</a>
+    </section>
+
+    <!-- Contact & Footer -->
+    <section id="contato" class="contact-section reveal">
+        <div class="contact-info">
+            <h2>Contato</h2>
+            <p>Estamos abertos para colaborações científicas, parcerias industriais e missões governamentais.</p>
+            
+            <div class="address-box glass">
+                <h4 class="brand-font" style="color: var(--text-light); margin-bottom: 10px;">Endereço Sede</h4>
+                <p style="margin:0; color: var(--text-light);">Rua Dr. Ricardo Benetton Martins, 1000<br>Polo II de Alta Tecnologia<br>Campinas/SP - Brasil</p>
+            </div>
+        </div>
+        
+        <form class="contact-form glass" style="padding: 2rem; border-radius: 8px;">
+            <div class="form-group">
+                <input type="text" placeholder="Nome / Instituição" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="E-mail Científico ou Corporativo" required>
+            </div>
+            <div class="form-group">
+                <textarea rows="4" placeholder="Descreva o propósito da parceria ou dúvida..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 INTENSIC - Instituição Científica, Tecnológica e de Inovação. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

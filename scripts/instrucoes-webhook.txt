@@ -1,0 +1,18 @@
+═══════════════════════════════════════════════════════════════════
+  CONFIGURAR WEBHOOK NO ANTIGRAVITY
+═══════════════════════════════════════════════════════════════════
+
+1. Abra o Antigravity → Settings → Response/Output
+
+2. Configure Webhook URL:
+   http://localhost:3101/telegram-sim
+
+3. Formato do POST (JSON):
+   {
+     "text": "resposta_do_modelo",
+     "chat_id": "6863590559"
+   }
+
+4. Salve e responda "ok" aqui para confirmar
+
+═══════════════════════════════════════════════════════════════════

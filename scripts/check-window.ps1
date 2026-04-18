@@ -1,0 +1,1 @@
+Get-Process -Name 'Antigravity' | Where-Object { $_.MainWindowHandle -ne [IntPtr]::Zero } | Select-Object Id, MainWindowTitle, MainWindowHandle

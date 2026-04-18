@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Scanner | AI Agent Security Shield</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            base: '#020617', // ultra deep slate
+                            card: '#0f172a',
+                            accent1: '#38bdf8', // sky blue glow
+                            accent2: '#4ade80', // green emerald glow
+                            danger: '#ef4444'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glow 3s ease-in-out infinite',
+                        'scanline': 'scanline 10s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%, 100%': { opacity: 0.4, filter: 'blur(40px)' },
+                            '50%': { opacity: 0.7, filter: 'blur(60px)' }
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        body {
+            background-color: #020617;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .cyber-grid {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 30%, transparent 100%);
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .gradient-border {
+            position: relative;
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 1rem;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(135deg, #38bdf8, #4ade80, #38bdf8);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+
+        .card-hover:hover .gradient-border::before {
+            opacity: 1;
+        }
+
+        .irresistible-cta {
+            background: linear-gradient(135deg, #0284c7 0%, #16a34a 100%);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .irresistible-cta:hover {
+            box-shadow: 0 0 40px rgba(74, 222, 128, 0.5);
+            transform: translateY(-4px) scale(1.03);
+        }
+
+        .neon-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step-line {
+            background: linear-gradient(to bottom, #38bdf8, transparent);
+            width: 2px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Layer -->
+    <div class="fixed inset-0 z-[-2] cyber-grid"></div>
+    <div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 neon-orb animate-glow-pulse"></div>
+    <div class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-green-600/10 neon-orb animate-glow-pulse" style="animation-delay: 1.5s;"></div>
+    
+    <!-- Scanline Effect -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[100] opacity-[0.03] overflow-hidden">
+        <div class="w-full h-2 bg-green-500 animate-scanline"></div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="fixed w-full top-0 z-[100] glass px-6 py-4 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-10 h-10 bg-gradient-to-tr from-sky-400 to-emerald-400 rounded-lg flex items-center justify-center shadow-lg group-hover:rotate-12 transition-all duration-500">
+                    <svg class="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <span class="text-xl font-bold tracking-tighter">SKILL<span class="text-sky-400">SCANNER</span></span>
+            </div>
+            
+            <div class="hidden lg:flex gap-10 text-sm font-semibold text-slate-400 tracking-wide uppercase">
+                <a href="#vision" class="hover:text-sky-400 transition-colors">Vision</a>
+                <a href="#how" class="hover:text-sky-400 transition-colors">How it works</a>
+                <a href="#pricing" class="hover:text-sky-400 transition-colors">Pricing</a>
+            </div>
+
+            <button class="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-full text-sm font-bold transition-all">Launch Console</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-20 items-center">
+            
+            <div class="space-y-10">
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] scroll-reveal">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Live Threats Quarantined: 12,402
+                </div>
+                
+                <h1 class="text-6xl lg:text-8xl font-black text-white leading-[0.9] scroll-reveal">
+                    Security for the <br/>
+                    <span class="bg-gradient-to-r from-sky-400 via-emerald-400 to-sky-400 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent italic">AI Frontier.</span>
+                </h1>
+                
+                <p class="text-xl text-slate-400 max-w-lg leading-relaxed scroll-reveal font-light">
+                    Autonomous agents need autonomous protection. Scan your OpenClaw skills for prompt injection, hidden malware, and vulnerability leaks in seconds.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 scroll-reveal">
+                    <button class="irresistible-cta px-10 py-5 rounded-2xl text-white font-bold text-xl uppercase tracking-wider">
+                        Scan Now Free
+                    </button>
+                    <div class="flex items-center gap-4 text-slate-500">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[10px] font-bold">OC</div>
+                            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[10px] font-bold">AG</div>
+                            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-emerald-500 text-slate-950 flex items-center justify-center text-[10px] font-black">+60M</div>
+                        </div>
+                        <span class="text-sm font-medium">Securing the elite devs.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Mockup -->
+            <div class="relative scroll-reveal">
+                <div class="absolute inset-0 bg-sky-500/20 blur-[100px] animate-glow-pulse"></div>
+                <div class="glass p-8 rounded-3xl border border-white/10 relative overflow-hidden animate-float">
+                    <div class="flex gap-2 mb-6">
+                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+                    </div>
+                    <div class="font-mono text-sm space-y-4">
+                        <div class="text-slate-500">$ skill-scanner --target ./openclaw/skills</div>
+                        <div class="text-sky-400"># Initializing Neural Engine...</div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                <div class="bg-sky-400 h-full w-[85%] transition-all duration-1000"></div>
+                            </div>
+                            <span class="text-xs text-sky-400">85%</span>
+                        </div>
+                        <div class="text-emerald-400">[PASS] AntiGravity.skill verif. OK</div>
+                        <div class="text-red-400 bg-red-400/10 px-3 py-1 rounded inline-block">[ALERT] Malware injection found in 'unverified_v2.ps1'</div>
+                        <div class="text-slate-400">> Quarantining file... Done.</div>
+                        <div class="animate-pulse w-2 h-4 bg-white/50 inline-block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-20 border-y border-white/5 bg-slate-950/20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+            <span class="text-2xl font-bold font-mono tracking-tighter">CLOUDSTRIKE_AI</span>
+            <span class="text-2xl font-bold font-mono tracking-tighter">NVIDIA_RED</span>
+            <span class="text-2xl font-bold font-mono tracking-tighter">PALANTIR_X</span>
+            <span class="text-2xl font-bold font-mono tracking-tighter">SENTINEL_ONE</span>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+            <div class="sticky top-32 h-fit">
+                <h2 class="text-5xl lg:text-7xl font-black text-white mb-8 scroll-reveal">Three steps to <br/><span class="text-sky-400">Absolute Neutrality.</span></h2>
+                <p class="text-slate-400 text-lg scroll-reveal">We don't trust. We verify. Our multi-model security layer intercepts threats before they touch your runtime.</p>
+            </div>
+            
+            <div class="space-y-32">
+                <!-- Step 1 -->
+                <div class="relative pl-12 scroll-reveal">
+                    <div class="absolute left-0 top-0 step-line"></div>
+                    <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-slate-900 border-2 border-sky-400 shadow-[0_0_15px_#38bdf8]"></div>
+                    <h3 class="text-3xl font-bold text-white mb-4 italic">01. Connect & Sync</h3>
+                    <p class="text-slate-400 leading-relaxed">Simply connect your Git repository or local OpenClaw folder. We map every system call and API interaction across your entire agent skill-set instantly.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative pl-12 scroll-reveal">
+                    <div class="absolute left-0 top-0 step-line"></div>
+                    <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-slate-900 border-2 border-sky-400 shadow-[0_0_15px_#38bdf8]"></div>
+                    <h3 class="text-3xl font-bold text-white mb-4 italic">02. Static & Behavioral Analysis</h3>
+                    <p class="text-slate-400 leading-relaxed">Our scanner uses neural pattern matching to detect prompt injection "payloads" and behavioral anomalies that standard antivirus misses.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative pl-12 scroll-reveal">
+                    <div class="absolute left-0 top-0 step-line" style="background: transparent;"></div>
+                    <div class="absolute -left-3 top-0 w-6 h-6 rounded-full bg-slate-900 border-2 border-emerald-400 shadow-[0_0_15px_#4ade80]"></div>
+                    <h3 class="text-3xl font-bold text-white mb-4 italic">03. Automated Quarantine</h3>
+                    <p class="text-slate-400 leading-relaxed">Vulnerabilities are automatically wrapped in a secure sandbox. Deploy with the the official Skill Scanner "Seal of Trust" verification tag.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-32 px-6 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto text-center mb-20 scroll-reveal">
+            <h2 class="text-5xl font-black text-white mb-6">Scale with <span class="text-emerald-400">Certainty.</span></h2>
+            <p class="text-slate-500">Pick the level of protection that fits your autonomous fleet.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <!-- Free -->
+            <div class="card-hover scroll-reveal">
+                <div class="gradient-border p-8 h-full flex flex-col">
+                    <h4 class="text-slate-400 text-sm font-bold uppercase mb-4 tracking-widest">Base Layer</h4>
+                    <div class="text-4xl font-black text-white mb-8">$0<span class="text-sm font-medium text-slate-500">/mo</span></div>
+                    <ul class="text-sm space-y-4 mb-10 flex-grow text-slate-400 font-medium">
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> 5 manual scans / day</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Basic injection detection</li>
+                        <li class="flex items-center gap-2 text-slate-600"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg> API Access</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 font-bold transition-all">Start Free</button>
+                </div>
+            </div>
+
+            <!-- Pro -->
+            <div class="card-hover scroll-reveal" style="transition-delay: 100ms;">
+                <div class="gradient-border p-8 h-full flex flex-col relative scale-105 shadow-2xl shadow-sky-500/10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-slate-950 text-[10px] font-black px-4 py-1 rounded-full uppercase">Most Professional</div>
+                    <h4 class="text-sky-400 text-sm font-bold uppercase mb-4 tracking-widest">Advanced Shield</h4>
+                    <div class="text-4xl font-black text-white mb-8">$49<span class="text-sm font-medium text-slate-500">/mo</span></div>
+                    <ul class="text-sm space-y-4 mb-10 flex-grow text-slate-400 font-medium">
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Unlimited scans</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Behavioral Neural Analysis</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Full API / CLI Access</li>
+                    </ul>
+                    <button class="w-full py-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-black transition-all">Secure My Agents</button>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="card-hover scroll-reveal" style="transition-delay: 200ms;">
+                <div class="gradient-border p-8 h-full flex flex-col">
+                    <h4 class="text-slate-400 text-sm font-bold uppercase mb-4 tracking-widest">Global Ops</h4>
+                    <div class="text-4xl font-black text-white mb-8">Custom</div>
+                    <ul class="text-sm space-y-4 mb-10 flex-grow text-slate-400 font-medium">
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Dedicated Infra</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Zero-Day Response Team</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> custom SLA</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 font-bold transition-all">Contact Ops</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-white/5 text-center">
+        <div class="flex items-center justify-center gap-2 mb-8">
+            <div class="w-6 h-6 bg-gradient-to-tr from-sky-400 to-emerald-400 rounded flex items-center justify-center">
+                <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <span class="font-bold tracking-tighter">SKILLSCANNER</span>
+        </div>
+        <p class="text-slate-500 text-xs font-mono uppercase tracking-[0.3em] mb-4">Securing the autonomous future.</p>
+        <p class="text-slate-600 text-xs text-mono tracking-widest">© 2026 Skill Scanner. All rights reserved.</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Reveal animations
+            const reveals = gsap.utils.toArray('.scroll-reveal');
+            reveals.forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 90%",
+                        toggleActions: "play none none none"
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power4.out"
+                });
+            });
+
+            // Smooth background parallax or floating
+            window.addEventListener('mousemove', (e) => {
+                const orbs = document.querySelectorAll('.neon-orb');
+                const x = (e.clientX / window.innerWidth - 0.5) * 40;
+                const y = (e.clientY / window.innerHeight - 0.5) * 40;
+                
+                orbs.forEach(orb => {
+                    orb.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

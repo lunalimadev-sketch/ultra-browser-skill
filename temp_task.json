@@ -1,0 +1,33 @@
+{
+  "name": "📄 ARTIGO | Artigo sobre o Openclaw e o grande Opus",
+  "description": "**ID Interno:** TSK-20260322-003\n**Tipo:** Artigo\n**Cliente:** Maria\n**Prazo:** 15/04/2026\n\n## Subtarefas\n- [ ] Pesquisa bibliográfica\n- [ ] Consultar estrutura da revista\n- [ ] Redigir introdução\n- [ ] Redigir desenvolvimento\n- [ ] Escrever conclusão",
+  "status": "backlog",
+  "assignees": [290472060],
+  "tags": ["openclaw", "opus", "artigo"],
+  "custom_fields": [
+    {
+      "id": "31fd70e1-41c5-4485-9708-622e195b1aa8",
+      "value": "TSK-20260322-003"
+    },
+    {
+      "id": "22dd088a-14d4-452f-8283-7db3dcba975c",
+      "value_options": ["4649aaf7-fa0a-4b5c-9d70-fa5ca1ce1c19"]
+    },
+    {
+      "id": "94c3fd13-d2d4-4910-9688-a69d15e1ad26",
+      "value": "Maria"
+    },
+    {
+      "id": "68c3ef24-cf88-49c2-af3f-e24d07a77e2d",
+      "value_options": ["255592e1-353d-44d2-9e4c-0d0703291f3a"]
+    },
+    {
+      "id": "b1602694-8484-4a60-bd5d-b61f3a565e7d",
+      "value": "6863590559"
+    },
+    {
+      "id": "969ad872-edb1-4cc0-ba3a-f2b5074d65ce",
+      "value": ""
+    }
+  ]
+}

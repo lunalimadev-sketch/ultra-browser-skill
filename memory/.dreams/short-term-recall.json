@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-17T04:11:01.777Z",
+  "entries": {
+    "memory:memory/2026-03-23.md:1:5": {
+      "key": "memory:memory/2026-03-23.md:1:5",
+      "path": "memory/2026-03-23.md",
+      "startLine": 1,
+      "endLine": 5,
+      "source": "memory",
+      "snippet": "# Memória do Dia: 23/03/2026 - Agente ativo usando o modelo oficial do Google como principal fallback. - Fluxos do Academic Task Manager em testes contínuos via Telegram.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4660170704126358,
+      "maxScore": 0.4660170704126358,
+      "firstRecalledAt": "2026-04-16T22:58:39.660Z",
+      "lastRecalledAt": "2026-04-16T22:58:39.660Z",
+      "queryHashes": [
+        "18ae196ad6cd"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "23/03/2026",
+        "memória",
+        "dia",
+        "agente",
+        "ativo",
+        "usando",
+        "modelo",
+        "oficial"
+      ]
+    },
+    "memory:memory/2026-03-22.md:1:6": {
+      "key": "memory:memory/2026-03-22.md:1:6",
+      "path": "memory/2026-03-22.md",
+      "startLine": 1,
+      "endLine": 6,
+      "source": "memory",
+      "snippet": "# Memória do Dia: 22/03/2026 - O sistema Academic Task Manager foi configurado. - Webhooks do ClickUp configurados com sucesso. - O OpenClaw foi programado via MEMORY.md para usar scripts PowerShell no diretório workspace/scripts/.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4568227261304855,
+      "maxScore": 0.4568227261304855,
+      "firstRecalledAt": "2026-04-16T22:58:39.660Z",
+      "lastRecalledAt": "2026-04-16T22:58:39.660Z",
+      "queryHashes": [
+        "18ae196ad6cd"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "22/03/2026",
+        "memory.md",
+        "workspace/scripts",
+        "memória",
+        "dia",
+        "sistema",
+        "academic",
+        "task"
+      ]
+    },
+    "memory:memory/2026-04-15.md:1:35": {
+      "key": "memory:memory/2026-04-15.md:1:35",
+      "path": "memory/2026-04-15.md",
+      "startLine": 1,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "# 15/04/2026 ## 🚀 Organograma de Time de Agentes OpenClaw ### Contexto Taís quer criar um time de agentes OpenClaw (usando o Paperclip) baseado no organograma de um squad ágil ideal, com skills específicas para cada especialista. ### идея Original (do Arena AI - grok-4.20-multi-agent-beta-0309) **Time Ideal de Desenvolvimento de Software (Squad Ágil):** | Integrante | Cargo | Competências | |-----------|-------|--------------| | Ana Oliveira | Gerente de Engenharia / Tech Lead | Arquitetura, System Design, liderança, cloud | | Marcos Silva | Product Owner | Priorização, User Stories, gestão de stakeholders | | Sofia Costa | Designer UX/UI | Pesquisa, Figma, Design Systems, acessibilidad",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.049167339503765,
+      "maxScore": 0.5527169957756995,
+      "firstRecalledAt": "2026-04-16T22:58:44.462Z",
+      "lastRecalledAt": "2026-04-16T23:03:07.564Z",
+      "queryHashes": [
+        "36dc0d924763",
+        "380b09d1f425"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "15/04/2026",
+        "grok-4.20-multi-agent-beta-0309",
+        "ux/ui",
+        "organograma",
+        "time",
+        "agentes",
+        "openclaw",
+        "contexto"
+      ]
+    },
+    "memory:memory/2026-04-10.md:1:27": {
+      "key": "memory:memory/2026-04-10.md:1:27",
+      "path": "memory/2026-04-10.md",
+      "startLine": 1,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "# Daily Memory - 10/04/2026 ## Antigravity Bridge - Skill Criada ✅ ### Problema Inicial - OpenClaw não conseguia enviar comandos para o Antigravity - `agy chat \"prompt\"` abria a janela mas não enviava o texto ### Solução Desenvolvida - Script PowerShell usa simulação de teclado: 1. Abre painel com `agy chat --reuse-window` 2. Espera 4s para UI carregar 3. Usa **Ctrl+Alt+Shift+C** para focar no input 4. SendKeys digita o prompt 5. ENTER final envia ### Arquivos Criados - `skills/antigravity/SKILL.md` - `skills/antigravity/scripts/execute.ps1` ### Status - ✅ FUNCIONANDO - Testado e confirmado ### Fontes - Reddit: antigravity terminal blindness - Discuss AI Google: missing enter",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.513656963407993,
+      "maxScore": 0.5605444028973579,
+      "firstRecalledAt": "2026-04-17T04:08:04.070Z",
+      "lastRecalledAt": "2026-04-17T04:11:01.777Z",
+      "queryHashes": [
+        "98890ab85129",
+        "964ac9e831b3",
+        "b87f23b6c5c9"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "10/04/2026",
+        "reuse-window",
+        "skills/antigravity/skill.md",
+        "antigravity",
+        "bridge",
+        "skill",
+        "criada",
+        "problema"
+      ]
+    },
+    "memory:memory/2026-04-16.md:174:224": {
+      "key": "memory:memory/2026-04-16.md:174:224",
+      "path": "memory/2026-04-16.md",
+      "startLine": 174,
+      "endLine": 224,
+      "source": "memory",
+      "snippet": "- `summarize` — resumir URLs/arquivos - `browser-use` / `playwright` — automação de browser - `humanize-ai-text` — humanizar texto - `image-generate` — geração de imagens --- ## ⚠️ Problema Técnico: OpenClaw Gateway Adapter ### Erro \"OpenClaw gateway adapter missing url\" ### Tentativas de Resolução 1. ✅ Configurado via API PATCH com: - `gatewayUrl: ws://127.0.0.1:18789` - `authToken` e `headers.x-openclaw-token` - `devicePrivateKeyPem` (já existia) 2. ✅ Atualizado CEO também (mesma config) 3. ❌ Erro persiste mesmo com config salva ### Possíveis Causas - Bug conhecido do Paperclip (issue #744) - Necessário reiniciar o Paperclip para recarregar config - Necessário deletar e recri",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.49573136866092676,
+      "maxScore": 0.49573136866092676,
+      "firstRecalledAt": "2026-04-17T04:08:04.070Z",
+      "lastRecalledAt": "2026-04-17T04:08:04.070Z",
+      "queryHashes": [
+        "98890ab85129"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "gateway",
+        "urls/arquivos",
+        "browser-use",
+        "humanize-ai-text",
+        "image-generate",
+        "127.0.0.1",
+        "headers.x-openclaw-token",
+        "summarize"
+      ]
+    },
+    "memory:memory/2026-04-16.md:1:39": {
+      "key": "memory:memory/2026-04-16.md:1:39",
+      "path": "memory/2026-04-16.md",
+      "startLine": 1,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "--- *Atualizado: 17/04/2026 00:48* ## 🔄 Sessão noturna (23:00-00:48) ### Problema Técnico: Paperclip + opencode - O adapter \"claude_local\" com comando \"opencode\" falhava com \"exit code 1\" - O opencode precisa do subcomando \"run\" para executar - Tentativas de wrapper não funcionaram ### Solução: Adapter HTTP com Pollinations.ai - ✅ Pollinations.ai funciona (API gratuita, não requer chave) - ✅ Todos os 5 agentes atualizados para usar HTTP + Pollinations.ai - Rotina \"Monitoramento de Concorrentes\" ativa e funcionando ### Antigravity - Interação Bidirecional - ✅ Criado webhook server (porta 3101) - ✅ Script bidirectional.ps1 criado (polling clipboard + webhook) - ⚠️ Teste bidirectional d",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.468167445063591,
+      "maxScore": 0.468167445063591,
+      "firstRecalledAt": "2026-04-17T04:09:05.635Z",
+      "lastRecalledAt": "2026-04-17T04:09:05.635Z",
+      "queryHashes": [
+        "964ac9e831b3"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "17/04/2026",
+        "00-00",
+        "claude-local",
+        "pollinations.ai",
+        "bidirectional.ps1",
+        "atualizado",
+        "sessão",
+        "noturna"
+      ]
+    }
+  }
+}
