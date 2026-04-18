@@ -66,9 +66,6 @@ public class Win32 {
         }
         
         $PromptToSend = $PromptText
-        if (-not $PromptText.StartsWith("/telegram")) {
-            $PromptToSend = "/telegram " + $PromptText
-        }
         $escapedPrompt = ""
         $specialChars = "+^%~()[]{}"
         foreach ($c in $PromptToSend.ToCharArray()) {
