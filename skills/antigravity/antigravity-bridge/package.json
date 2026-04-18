@@ -1,0 +1,17 @@
+{
+  "name": "antigravity-bridge",
+  "version": "2.0.0",
+  "description": "Bridge entre OpenClaw e Antigravity IDE via webhook local",
+  "main": "webhook-server.js",
+  "scripts": {
+    "start": "node webhook-server.js",
+    "dev":   "node --watch webhook-server.js"
+  },
+  "keywords": ["openclaw", "antigravity", "bridge", "webhook"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
