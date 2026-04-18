@@ -59,16 +59,18 @@ function Copy-AntigravityContent {
     return Get-ClipboardSafe
 }
 
-function Send-ToTelegram {
+function Send-ToOpenClaw {
     param([string]$Text)
-    $uri  = "http://localhost:3102/reply"
-    $body = [System.Text.Encoding]::UTF8.GetBytes((@{ text = $Text } | ConvertTo-Json))
+    $uri     = "http://localhost:18789/v1/responses"
+    $token   = "a8df8a4b175b67679f67c4796223c09d6cd6b2c93f5b0bbf"
+    $headers = @{ "Authorization" = "Bearer $token" }
+    $body    = [System.Text.Encoding]::UTF8.GetBytes((@{ model = "openclaw:main"; input = $Text } | ConvertTo-Json))
     try {
-        Invoke-RestMethod -Uri $uri -Method Post -Body $body -ContentType "application/json; charset=utf-8" | Out-Null
-        Write-Host "[+] Mensagem enviada ao Telegram." -ForegroundColor Green
+        Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $body -ContentType "application/json; charset=utf-8" | Out-Null
+        Write-Host "[+] Resposta enviada ao OpenClaw." -ForegroundColor Green
         return $true
     } catch {
-        Write-Warning "Falha ao contatar Telegram bridge: $_"
+        Write-Warning "Falha ao contatar OpenClaw API: $_"
         return $false
     }
 }
@@ -137,10 +139,10 @@ if ($responseFound) {
         $response = $response.Substring($baseline.Length).Trim()
     }
     if ($response.Length -lt 10) { $response = $lastClip }
-    Send-ToTelegram -Text $response | Out-Null
+    Send-ToOpenClaw -Text $response | Out-Null
 } else {
     Write-Host "[!] Timeout sem resposta estavel." -ForegroundColor Red
-    Send-ToTelegram -Text "Tempo limite atingido. Verifique a resposta diretamente no Antigravity." | Out-Null
+    Send-ToOpenClaw -Text "Timeout ($WaitSeconds s). Antigravity nao respondeu a tempo." | Out-Null
 }
 
 exit 0
