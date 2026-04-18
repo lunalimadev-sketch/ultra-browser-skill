@@ -114,15 +114,17 @@ public class Win32BidiCapture {
         }
     }
 
-    # Envia ao OpenClaw REST API se há resposta
+    # Envia ao OpenClaw REST API se ha resposta
     if ($response) {
         try {
             $headers = @{ "Authorization" = "Bearer $Token" }
-            $body = (@{ model = "openclaw:main"; input = $response } | ConvertTo-Json)
-            $bytes = [System.Text.Encoding]::UTF8.GetBytes($body)
+            $payload = @{ model = "openclaw:main"; input = $response } | ConvertTo-Json
+            $bytes = [System.Text.Encoding]::UTF8.GetBytes($payload)
+            
             Invoke-RestMethod -Uri $WebhookUrl -Method POST -Headers $headers -Body $bytes `
                 -ContentType "application/json; charset=utf-8" `
                 -ErrorAction Stop | Out-Null
+                
             Write-Host "Resposta entregue ao OpenClaw API: $WebhookUrl" -ForegroundColor Green
         } catch {
             Write-Warning "Falha ao enviar para OpenClaw API: $_"
