@@ -6,6 +6,7 @@ Este é o hub central de memória. Para detalhes específicos, consulte os módu
 - **[Tech Stack](memory/tech_stack.md):** Modelos, ambiente e integrações.
 - **[Agency Rules](memory/agency_rules.md):** Diretrizes de browser, Arena AI e fluxos de agência.
 - **[Clients & Projects](memory/clients.md):** Base de dados de clientes e projetos.
+- **[Startup Optimization](docs/openclaw-startup-optimization-tutorial.md):** Guia de performance do Gateway.
 - **[2026-04-16](memory/2026-04-16.md):** Registro da sessão de construção da empresa de marketing com Paperclip
 
 ## 🎓 Academic Task Manager

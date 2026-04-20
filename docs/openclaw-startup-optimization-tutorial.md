@@ -53,10 +53,25 @@ Start-Sleep -Seconds 3
 openclaw gateway start
 ```
 
+### 5. Resiliência de Rede (Telegram & IPv6)
+Se os logs mostrarem `UND_ERR_CONNECT_TIMEOUT` ou se o servidor de browser demorar muito para iniciar, o culpado pode ser a tentativa do Node.js de conectar via IPv6.
+
+**Como resolver:**
+No arquivo `openclaw.json`, force o canal Telegram a usar apenas IPv4:
+```json
+"channels": {
+  "telegram": {
+    "network": {
+      "autoSelectFamily": false
+    }
+  }
+}
+```
+
 ---
 
 ## ✅ Resumo dos Benefícios
-Após estas mudanças, o tempo de inicialização (startup time) deve cair de **> 4 minutos** para aproximadamente **~30 segundos**.
+Após estas mudanças, o tempo de inicialização (startup time) deve cair de **> 4 minutos** para aproximadamente **~30-40 segundos**, com conexões de canais instantâneas.
 
 ---
 *Atualizado em: 20/04/2026*
