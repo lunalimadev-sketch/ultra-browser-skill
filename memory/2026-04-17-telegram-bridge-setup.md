@@ -26,7 +26,7 @@ Sender (untrusted metadata):
 }
 ```
 
-tenho o token:8661219743:AAHmJA4YWenX8w-DKJz63KvGnrfBinjSMBA
+tenho o token:[REMOVIDO]
 assistant: Hmm, esse token já está no .env do bridge (é do @antigravityClawBot). Para receber aqui, precisa ser o token do **@LunaClawDevBot**.
 
 Você consegue obtener o token do @LunaClawDevBot com o @BotFather no Telegram?

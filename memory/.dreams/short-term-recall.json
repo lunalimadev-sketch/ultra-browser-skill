@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T04:11:01.777Z",
+  "updatedAt": "2026-04-18T21:00:34.595Z",
   "entries": {
     "memory:memory/2026-03-23.md:1:5": {
       "key": "memory:memory/2026-03-23.md:1:5",
@@ -103,20 +103,23 @@
       "endLine": 27,
       "source": "memory",
       "snippet": "# Daily Memory - 10/04/2026 ## Antigravity Bridge - Skill Criada ✅ ### Problema Inicial - OpenClaw não conseguia enviar comandos para o Antigravity - `agy chat \"prompt\"` abria a janela mas não enviava o texto ### Solução Desenvolvida - Script PowerShell usa simulação de teclado: 1. Abre painel com `agy chat --reuse-window` 2. Espera 4s para UI carregar 3. Usa **Ctrl+Alt+Shift+C** para focar no input 4. SendKeys digita o prompt 5. ENTER final envia ### Arquivos Criados - `skills/antigravity/SKILL.md` - `skills/antigravity/scripts/execute.ps1` ### Status - ✅ FUNCIONANDO - Testado e confirmado ### Fontes - Reddit: antigravity terminal blindness - Discuss AI Google: missing enter",
-      "recallCount": 3,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.513656963407993,
+      "totalScore": 2.550725123286247,
       "maxScore": 0.5605444028973579,
       "firstRecalledAt": "2026-04-17T04:08:04.070Z",
-      "lastRecalledAt": "2026-04-17T04:11:01.777Z",
+      "lastRecalledAt": "2026-04-18T18:57:23.947Z",
       "queryHashes": [
         "98890ab85129",
         "964ac9e831b3",
-        "b87f23b6c5c9"
+        "b87f23b6c5c9",
+        "b2e40f42c252",
+        "9c8610593db1"
       ],
       "recallDays": [
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-18"
       ],
       "conceptTags": [
         "10/04/2026",
@@ -167,18 +170,20 @@
       "endLine": 39,
       "source": "memory",
       "snippet": "--- *Atualizado: 17/04/2026 00:48* ## 🔄 Sessão noturna (23:00-00:48) ### Problema Técnico: Paperclip + opencode - O adapter \"claude_local\" com comando \"opencode\" falhava com \"exit code 1\" - O opencode precisa do subcomando \"run\" para executar - Tentativas de wrapper não funcionaram ### Solução: Adapter HTTP com Pollinations.ai - ✅ Pollinations.ai funciona (API gratuita, não requer chave) - ✅ Todos os 5 agentes atualizados para usar HTTP + Pollinations.ai - Rotina \"Monitoramento de Concorrentes\" ativa e funcionando ### Antigravity - Interação Bidirecional - ✅ Criado webhook server (porta 3101) - ✅ Script bidirectional.ps1 criado (polling clipboard + webhook) - ⚠️ Teste bidirectional d",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.468167445063591,
-      "maxScore": 0.468167445063591,
+      "totalScore": 0.9683275282382965,
+      "maxScore": 0.5001600831747055,
       "firstRecalledAt": "2026-04-17T04:09:05.635Z",
-      "lastRecalledAt": "2026-04-17T04:09:05.635Z",
+      "lastRecalledAt": "2026-04-18T18:57:23.947Z",
       "queryHashes": [
-        "964ac9e831b3"
+        "964ac9e831b3",
+        "9c8610593db1"
       ],
       "recallDays": [
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-18"
       ],
       "conceptTags": [
         "17/04/2026",
@@ -189,6 +194,102 @@
         "atualizado",
         "sessão",
         "noturna"
+      ]
+    },
+    "memory:memory/2026-04-17.md:1:37": {
+      "key": "memory:memory/2026-04-17.md:1:37",
+      "path": "memory/2026-04-17.md",
+      "startLine": 1,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "--- *Atualizado: 17/04/2026 01:26* ## 🔄 Sessão noturna (continuação) ### Problema: Interação Bidirecional Antigravity **Testes realizados:** - ✅ Envio de prompts via execute.ps1 funciona (simulação de teclado) - ✅ Antigravity responde na janela - ⚠️ Captura automática da resposta (clipboard) - não funciona - ⚠️ Bidirecional (webhook callback) - não implementado automaticamente **Descoberta importante:** -Existe um telegram-bridge anterior que já funcionava bidirecionalmente - Bridge está em: `skills/antigravity/telegram-bridge/index.js` - Já tínhamos conversado com o Gemini via esse bridge antes - O bridge responde no Telegram com confirmações (\"Aviso de Recebimento\") **Como funcionav",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.5633522763848302,
+      "maxScore": 0.5305072918534278,
+      "firstRecalledAt": "2026-04-18T18:40:39.018Z",
+      "lastRecalledAt": "2026-04-18T19:48:45.586Z",
+      "queryHashes": [
+        "b2e40f42c252",
+        "9c8610593db1",
+        "bff5c65722e3"
+      ],
+      "recallDays": [
+        "2026-04-18"
+      ],
+      "conceptTags": [
+        "17/04/2026",
+        "execute.ps1",
+        "telegram-bridge",
+        "atualizado",
+        "sessão",
+        "noturna",
+        "continuação",
+        "problema"
+      ]
+    },
+    "memory:memory/2026-04-18.md:1:26": {
+      "key": "memory:memory/2026-04-18.md:1:26",
+      "path": "memory/2026-04-18.md",
+      "startLine": 1,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "# 2026-04-18 --- *Atualizado: 18/04/2026 01:37* ## Integração Antigravity+Telegram - FUNCIONANDO ✅ ### Serviços rodando: - **Porta 3000**: Telegram bridge (telegram-bridge/index.js) - **Porta 3101**: Webhook server (antigravity-bridge/webhook-server.js) ### Fluxo: ``` Telegram → 3000 → Antigravity (clipboard) → 3000/reply → Telegram ``` ### Scripts: - `telegram-bridge/index.js` - Bot Telegram - `scripts/monitor-response.ps1` - Envia prompt + captura resposta ### Status: ✅ OPERACIONAL --- *Fim do registro 18/04/2026*",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.0439056515693663,
+      "maxScore": 0.5291192114353179,
+      "firstRecalledAt": "2026-04-18T18:40:39.018Z",
+      "lastRecalledAt": "2026-04-18T18:57:23.947Z",
+      "queryHashes": [
+        "b2e40f42c252",
+        "9c8610593db1"
+      ],
+      "recallDays": [
+        "2026-04-18"
+      ],
+      "conceptTags": [
+        "18/04/2026",
+        "telegram-bridge/index.js",
+        "3000/reply",
+        "scripts/monitor-response.ps1",
+        "atualizado",
+        "integração",
+        "antigravity",
+        "telegram"
+      ]
+    },
+    "memory:memory/2026-04-07.md:1:33": {
+      "key": "memory:memory/2026-04-07.md:1:33",
+      "path": "memory/2026-04-07.md",
+      "startLine": 1,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "# Daily Memory - 07/04/2026 ## Sessão matinal (09:41) - Verificado que não há tarefas com prazo para hoje. - Discussão sobre o sistema de memória da agência. ## Evolução da Memória - Projeto \"Modularização\" ### Passo 2: Skills ✅ - Skill `academic-task-manager` criada em `workspace/skills/academic-task-manager/SKILL.md`. - Instruções detalhadas de execução movidas da `MEMORY.md` para a Skill. ### Passo 1: Modularização ✅ - `MEMORY.md` transformada em um hub central de referências. - Novos módulos de memória criados: - `memory/tech_stack.md`: Tech stack e preferências. - `memory/agency_rules.md`: Regras de browser e Arena AI. - `memory/clients.md`: Base de clientes (vazio por agora).",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.49560859799385065,
+      "maxScore": 0.49560859799385065,
+      "firstRecalledAt": "2026-04-18T21:00:34.595Z",
+      "lastRecalledAt": "2026-04-18T21:00:34.595Z",
+      "queryHashes": [
+        "1861fe3ff850"
+      ],
+      "recallDays": [
+        "2026-04-18"
+      ],
+      "conceptTags": [
+        "07/04/2026",
+        "academic-task-manager",
+        "memory.md",
+        "memory/tech-stack.md",
+        "memory/agency-rules.md",
+        "memory/clients.md",
+        "sessão",
+        "matinal"
       ]
     }
   }

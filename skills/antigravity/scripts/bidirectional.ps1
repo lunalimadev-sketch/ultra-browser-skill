@@ -31,7 +31,10 @@ Add-Type -AssemblyName System.Windows.Forms
 
 function Get-AntigravityWindow {
     return Get-Process -ErrorAction SilentlyContinue |
-           Where-Object { ($_.ProcessName -match 'antigravity|agy') -and $_.MainWindowHandle -ne [IntPtr]::Zero } |
+           Where-Object { 
+               ($_.MainWindowHandle -ne [IntPtr]::Zero) -and 
+               ($_.MainWindowTitle -match 'Antigravity') 
+           } |
            Select-Object -First 1
 }
 
@@ -73,6 +76,11 @@ function Send-ToAntigravityWithCapture {
             # Foca a janela do Antigravity e seleciona tudo
             $agyProc = Get-AntigravityWindow
             if ($agyProc) {
+                # Usa AppActivate para focar a janela (mais confiável)
+                Add-Type -AssemblyName Microsoft.VisualBasic
+                [Microsoft.VisualBasic.Interaction]::AppActivate($agyProc.Id)
+                Start-Sleep -Milliseconds 500
+
                 Add-Type -TypeDefinition @"
 using System;
 using System.Runtime.InteropServices;
@@ -86,9 +94,14 @@ public class Win32BidiCapture {
                 Start-Sleep -Milliseconds 400
             }
 
-            # Vai ao final da conversa, seleciona tudo e copia
+            # Foge do foco do campo de entrada (Input) antes de copiar
+            [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
+            Start-Sleep -Milliseconds 200
+            [System.Windows.Forms.SendKeys]::SendWait("+{TAB}")  # Shift+Tab foca no container de mensagens
+            Start-Sleep -Milliseconds 200
             [System.Windows.Forms.SendKeys]::SendWait("{END}")
-            Start-Sleep -Milliseconds 300
+            Start-Sleep -Milliseconds 200
+            # Seleciona tudo e copia
             [System.Windows.Forms.SendKeys]::SendWait("^a")
             Start-Sleep -Milliseconds 300
             [System.Windows.Forms.SendKeys]::SendWait("^c")

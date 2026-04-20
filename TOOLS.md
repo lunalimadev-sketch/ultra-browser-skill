@@ -33,3 +33,4 @@
 - **Skill Creator:** `~/AppData\Roaming\npm\node_modules\openclaw\skills\skill-creator\SKILL.md`
 - **Gemini:** `~/AppData\Roaming\npm\node_modules\openclaw\skills\gemini\SKILL.md`
 - **Antigravity Bridge:** `workspace/skills/antigravity/SKILL.md` ✅ READY
+- **Query Perplexity:** `workspace/skills/query-perplexity/SKILL.md`

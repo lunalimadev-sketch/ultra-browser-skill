@@ -1,9 +1,9 @@
-# OpenClaw ↔ Antigravity Bridge  v2.0
+# OpenClaw ↔ Antigravity Bridge (Evolved) v2.0
 
-Bridge limpa entre o **OpenClaw** (orquestrador) e o **Antigravity IDE** (executor de código).
-O Telegram **não faz parte deste projeto** — o OpenClaw já cuida de qualquer canal de comunicação.
+Bridge ultra-enxuta e direta entre o **OpenClaw** (orquestrador) e o **Antigravity IDE** (executor de código).
+Esta versão foi evoluída para eliminar intermediários (Node.js/Webhooks) e falar diretamente com a API do OpenClaw.
 
-## Arquitetura
+## Arquitetura (Fluxo Direto)
 
 ```
 [OpenClaw Agent]
@@ -16,66 +16,40 @@ O Telegram **não faz parte deste projeto** — o OpenClaw já cuida de qualquer
     │  resposta gerada
     ▼
 [bidirectional.ps1]  ← captura via clipboard
-    │  POST /antigravity
+    │  POST /v1/responses (Porta 18789)
     ▼
-[webhook-server.js :3101]  ← armazena resposta
-    │  GET /response (polling pelo OpenClaw)
-    ▼
-[OpenClaw Agent]  → responde ao usuário
+[OpenClaw Agent]  ← recebe e processa o resultado
 ```
 
-## Instalação
-
-```bash
-npm install
-```
-
-## Iniciar o servidor
-
-```bash
-node webhook-server.js
-# ou
-npm start
-```
+## Por que esta versão é melhor?
+- **Zero Middlemen**: Não precisa rodar `node webhook-server.js`.
+- **API Nativa**: Usa a porta nativa do OpenClaw (`18789`) com autenticação Bearer.
+- **Sem Conflitos**: Removeu-se completamente o suporte a Telegram paralelo para evitar o erro "409 Conflict".
 
 ## Testar manualmente
 
 ```powershell
-# Enviar tarefa e aguardar resposta no stdout
+# Enviar tarefa e aguardar resposta no stdout (terminal)
 powershell -ExecutionPolicy Bypass -File scripts/ask.ps1 "Refatore esta função para ser async/await"
 
-# Usar o modo bidirecional com webhook
+# Fluxo completo com entrega via API na Luna
 powershell -ExecutionPolicy Bypass -File scripts/bidirectional.ps1 `
-    -Prompt "Crie testes unitários para a função soma(a,b)" `
-    -WebhookUrl "http://localhost:3101/antigravity"
-
-# Verificar se há resposta disponível
-curl http://localhost:3101/response
-
-# Health check
-curl http://localhost:3101/status
+    -Prompt "Crie testes unitários para a função soma(a,b)"
 ```
 
 ## Estrutura de arquivos
 
 ```
-antigravity-bridge/
-├── webhook-server.js      ← Hub central (Node.js + Express)
-├── package.json
-├── SKILL.md               ← Instruções para o OpenClaw
-├── README.md
+antigravity/
+├── SKILL.md               ← Instruções para o OpenClaw (API Direta)
+├── README.md              ← Este guia
 └── scripts/
-    ├── execute.ps1        ← Injeta prompt na GUI do Antigravity
-    ├── bidirectional.ps1  ← Fluxo completo: envia + captura + POST webhook
-    └── ask.ps1            ← Atalho para testes manuais (stdout direto)
+    ├── execute.ps1        ← Injeta prompt na GUI do Antigravity (Robusto: detecta 'agy' ou 'Antigravity')
+    ├── bidirectional.ps1  ← Fluxo completo: envia + captura + POST direto para :18789
+    └── ask.ps1            ← Atalho para testes rápidos no terminal
 ```
 
-## Arquivos removidos (não são mais necessários)
-
-| Arquivo              | Motivo da remoção                                      |
-|----------------------|--------------------------------------------------------|
-| `index.js`           | Era um proxy Telegram que bypassava o OpenClaw         |
-| `monitor-response.ps1` | Responsabilidade movida para `bidirectional.ps1`     |
-| `get-response.ps1`   | Lógica consolidada em `bidirectional.ps1`              |
-| `reply-telegram.ps1` | Telegram é responsabilidade do OpenClaw, não da bridge |
-| `test-send.ps1`      | Substituído por `ask.ps1` (mais robusto)               |
+## Troubleshooting
+- Certifique-se de que o `agy` está no PATH do Windows.
+- O OpenClaw deve estar rodando para receber a resposta via porta 18789.
+- Caso o script falhe em focar a janela, certifique-se de que o Antigravity IDE não está minimizado para a bandeja.

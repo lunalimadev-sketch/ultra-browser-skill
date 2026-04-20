@@ -31,7 +31,10 @@ function Test-AgyInstalled {
 
 function Get-AntigravityWindow {
     return Get-Process -ErrorAction SilentlyContinue |
-           Where-Object { ($_.ProcessName -match 'antigravity|agy') -and $_.MainWindowHandle -ne [IntPtr]::Zero } |
+           Where-Object { 
+               ($_.MainWindowHandle -ne [IntPtr]::Zero) -and 
+               ($_.MainWindowTitle -match 'Antigravity') 
+           } |
            Select-Object -First 1
 }
 
@@ -61,9 +64,9 @@ function Send-ToGUI {
     $proc = Start-Process -FilePath "agy" -ArgumentList $chatArgs -PassThru
 
     Write-Host "Aguardando o Antigravity carregar..." -ForegroundColor Yellow
-    Start-Sleep -Seconds 6
+    Start-Sleep -Seconds 4  # Original: 4s, não 6s
 
-    # Localiza a janela pelo processo (mais confiável que FindWindow por título)
+    # Localiza a janela pelo processo
     $agyProc = Get-AntigravityWindow
     if (-not $agyProc) {
         Write-Error "Janela do Antigravity não encontrada."
@@ -84,32 +87,18 @@ public class Win32Focus {
     [Win32Focus]::ShowWindow($agyProc.MainWindowHandle, 9)   # SW_RESTORE
     Start-Sleep -Milliseconds 300
     [Win32Focus]::SetForegroundWindow($agyProc.MainWindowHandle)
-    Start-Sleep -Milliseconds 700
-
-    # ── Injeta o prompt via SendKeys ──────────────────────────────────────
-    # Escapa caracteres especiais do SendKeys
-    $specialChars = @('+', '^', '%', '~', '(', ')', '[', ']', '{', '}')
-    $escaped = ""
-    foreach ($c in $PromptText.ToCharArray()) {
-        if ($specialChars -contains [string]$c) {
-            $escaped += "{$c}"
-        } else {
-            $escaped += $c
-        }
-    }
-
-    # Envia linha a linha (suporte a prompts multiline)
-    $lines = $escaped -split "`r?`n"
-    for ($i = 0; $i -lt $lines.Length; $i++) {
-        [System.Windows.Forms.SendKeys]::SendWait($lines[$i])
-        if ($i -lt $lines.Length - 1) {
-            [System.Windows.Forms.SendKeys]::SendWait("+{ENTER}")  # Shift+Enter = nova linha no chat
-            Start-Sleep -Milliseconds 300
-        }
-    }
-
     Start-Sleep -Milliseconds 500
-    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")  # Envia o prompt
+
+    # Foca no campo de input do chat (original: Ctrl+Alt+Shift+C)
+    [System.Windows.Forms.SendKeys]::SendWait("^%+")  # Ctrl+Alt+Shift+C
+    Start-Sleep -Milliseconds 300
+
+    # Digita o prompt diretamente
+    [System.Windows.Forms.SendKeys]::SendWait($PromptText)
+    Start-Sleep -Milliseconds 500
+
+    # Envia o prompt
+    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 
     Write-Host ""
     Write-Host "Prompt enviado!" -ForegroundColor Green

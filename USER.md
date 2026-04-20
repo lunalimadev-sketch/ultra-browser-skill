@@ -8,6 +8,7 @@ _Learn about the person you're helping. Update this as you go._
 - **Timezone:** Fuso horário Padrão de Brasília (GMT-3)
 - **Notes:** Prefers step-by-step instructions in a direct and concise manner
 - **Preferências de News:** Sempre incluir fontes (URLs) nas notícias
+- **Preferência de Resposta:** Texto por padrão, áudio apenas se solicitado
 
 ## Context
 We are building an agency with multiple agents, I speak Portuguese.
