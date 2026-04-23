@@ -5,3 +5,8 @@ auth.json
 *.log/
 .openclaw/
 .clawhub/
+
+# Secrets / API keys
+paperclip-claimed-api-key.json
+agents_list.json
+agents_list_utf8.json

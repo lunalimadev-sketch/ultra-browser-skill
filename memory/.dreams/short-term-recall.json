@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T21:00:34.595Z",
+  "updatedAt": "2026-04-22T23:35:23.361Z",
   "entries": {
     "memory:memory/2026-03-23.md:1:5": {
       "key": "memory:memory/2026-03-23.md:1:5",
@@ -9,18 +9,20 @@
       "endLine": 5,
       "source": "memory",
       "snippet": "# Memória do Dia: 23/03/2026 - Agente ativo usando o modelo oficial do Google como principal fallback. - Fluxos do Academic Task Manager em testes contínuos via Telegram.",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.4660170704126358,
-      "maxScore": 0.4660170704126358,
+      "totalScore": 0.9558951467275619,
+      "maxScore": 0.48987807631492614,
       "firstRecalledAt": "2026-04-16T22:58:39.660Z",
-      "lastRecalledAt": "2026-04-16T22:58:39.660Z",
+      "lastRecalledAt": "2026-04-22T23:35:23.361Z",
       "queryHashes": [
-        "18ae196ad6cd"
+        "18ae196ad6cd",
+        "cb414ad65b84"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-22"
       ],
       "conceptTags": [
         "23/03/2026",
@@ -71,19 +73,23 @@
       "endLine": 35,
       "source": "memory",
       "snippet": "# 15/04/2026 ## 🚀 Organograma de Time de Agentes OpenClaw ### Contexto Taís quer criar um time de agentes OpenClaw (usando o Paperclip) baseado no organograma de um squad ágil ideal, com skills específicas para cada especialista. ### идея Original (do Arena AI - grok-4.20-multi-agent-beta-0309) **Time Ideal de Desenvolvimento de Software (Squad Ágil):** | Integrante | Cargo | Competências | |-----------|-------|--------------| | Ana Oliveira | Gerente de Engenharia / Tech Lead | Arquitetura, System Design, liderança, cloud | | Marcos Silva | Product Owner | Priorização, User Stories, gestão de stakeholders | | Sofia Costa | Designer UX/UI | Pesquisa, Figma, Design Systems, acessibilidad",
-      "recallCount": 2,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.049167339503765,
+      "totalScore": 2.0286035373806954,
       "maxScore": 0.5527169957756995,
       "firstRecalledAt": "2026-04-16T22:58:44.462Z",
-      "lastRecalledAt": "2026-04-16T23:03:07.564Z",
+      "lastRecalledAt": "2026-04-22T23:35:23.361Z",
       "queryHashes": [
         "36dc0d924763",
-        "380b09d1f425"
+        "380b09d1f425",
+        "2a0062ef8d54",
+        "cb414ad65b84"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-20",
+        "2026-04-22"
       ],
       "conceptTags": [
         "15/04/2026",
@@ -170,20 +176,26 @@
       "endLine": 39,
       "source": "memory",
       "snippet": "--- *Atualizado: 17/04/2026 00:48* ## 🔄 Sessão noturna (23:00-00:48) ### Problema Técnico: Paperclip + opencode - O adapter \"claude_local\" com comando \"opencode\" falhava com \"exit code 1\" - O opencode precisa do subcomando \"run\" para executar - Tentativas de wrapper não funcionaram ### Solução: Adapter HTTP com Pollinations.ai - ✅ Pollinations.ai funciona (API gratuita, não requer chave) - ✅ Todos os 5 agentes atualizados para usar HTTP + Pollinations.ai - Rotina \"Monitoramento de Concorrentes\" ativa e funcionando ### Antigravity - Interação Bidirecional - ✅ Criado webhook server (porta 3101) - ✅ Script bidirectional.ps1 criado (polling clipboard + webhook) - ⚠️ Teste bidirectional d",
-      "recallCount": 2,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.9683275282382965,
-      "maxScore": 0.5001600831747055,
+      "totalScore": 2.4477218687534332,
+      "maxScore": 0.5170659899711608,
       "firstRecalledAt": "2026-04-17T04:09:05.635Z",
-      "lastRecalledAt": "2026-04-18T18:57:23.947Z",
+      "lastRecalledAt": "2026-04-22T23:34:03.316Z",
       "queryHashes": [
         "964ac9e831b3",
-        "9c8610593db1"
+        "9c8610593db1",
+        "2a0062ef8d54",
+        "82e460748cc7",
+        "1bb64f005ca6"
       ],
       "recallDays": [
         "2026-04-17",
-        "2026-04-18"
+        "2026-04-18",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22"
       ],
       "conceptTags": [
         "17/04/2026",
@@ -236,19 +248,21 @@
       "endLine": 26,
       "source": "memory",
       "snippet": "# 2026-04-18 --- *Atualizado: 18/04/2026 01:37* ## Integração Antigravity+Telegram - FUNCIONANDO ✅ ### Serviços rodando: - **Porta 3000**: Telegram bridge (telegram-bridge/index.js) - **Porta 3101**: Webhook server (antigravity-bridge/webhook-server.js) ### Fluxo: ``` Telegram → 3000 → Antigravity (clipboard) → 3000/reply → Telegram ``` ### Scripts: - `telegram-bridge/index.js` - Bot Telegram - `scripts/monitor-response.ps1` - Envia prompt + captura resposta ### Status: ✅ OPERACIONAL --- *Fim do registro 18/04/2026*",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.0439056515693663,
+      "totalScore": 1.555266633629799,
       "maxScore": 0.5291192114353179,
       "firstRecalledAt": "2026-04-18T18:40:39.018Z",
-      "lastRecalledAt": "2026-04-18T18:57:23.947Z",
+      "lastRecalledAt": "2026-04-20T23:27:30.431Z",
       "queryHashes": [
         "b2e40f42c252",
-        "9c8610593db1"
+        "9c8610593db1",
+        "00718fd94cf0"
       ],
       "recallDays": [
-        "2026-04-18"
+        "2026-04-18",
+        "2026-04-20"
       ],
       "conceptTags": [
         "18/04/2026",
@@ -290,6 +304,163 @@
         "memory/clients.md",
         "sessão",
         "matinal"
+      ]
+    },
+    "memory:memory/2026-04-20.md:1:32": {
+      "key": "memory:memory/2026-04-20.md:1:32",
+      "path": "memory/2026-04-20.md",
+      "startLine": 1,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "# Tutorial: Otimizando o Startup do OpenClaw Este documento registra as configurações aplicadas para resolver o problema de longos delays (chegando a minutos) durante o startup do gateway OpenClaw no Windows. ## 1. Desabilitar Bonjour / mDNS **Sintoma:** O gateway pausa por vários segundos/minutos. Nos logs (`openclaw logs --follow`), aparecem mensagens como `[bonjour] watchdog detected non-announced service` e `restarting advertiser (service stuck in announcing)`. **Causa:** A biblioteca `@homebridge/ciao` (usada para local discovery) trava quando a interface de rede do Windows não suporta nativamente multicast ou possui configurações restritas. **Solução:** Se o acesso ao gateway não de",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9638521879911421,
+      "maxScore": 0.4889354228973388,
+      "firstRecalledAt": "2026-04-21T15:29:50.407Z",
+      "lastRecalledAt": "2026-04-21T15:38:31.971Z",
+      "queryHashes": [
+        "82e460748cc7",
+        "01303ea3f4d1"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "gateway",
+        "segundos/minutos",
+        "non-announced",
+        "homebridge/ciao",
+        "tutorial",
+        "otimizando",
+        "startup",
+        "openclaw"
+      ]
+    },
+    "memory:memory/2026-04-20.md:55:81": {
+      "key": "memory:memory/2026-04-20.md:55:81",
+      "path": "memory/2026-04-20.md",
+      "startLine": 55,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "Ao invés de usar `restart`, mate as instâncias explicitamente e aguarde liberação (sleep/timeout) antes de religar: ```powershell openclaw gateway stop Start-Sleep -Seconds 3 openclaw gateway start ``` ### Resultados Atuais As três primeiras etapas combinadas removeram os travamentos principais de rede (cortando de `> 4min` para `~1min 20s`). ## 4. Otimização Avançada: Hooks Internos (Pricing Bootstrap) **Sintoma:** O log `[gateway] ready...` esconde gargalos de verificação de preço e licença que correm via \"Internal Hooks\". **Causa:** Durante o startup, o OpenClaw engatilha `hook handlers` para checar limites na nuvem, telemetria embutida e bootstrap de pricing que muitas vezes engasgam",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9605502724647521,
+      "maxScore": 0.4864558935165405,
+      "firstRecalledAt": "2026-04-21T15:29:50.407Z",
+      "lastRecalledAt": "2026-04-21T15:38:31.971Z",
+      "queryHashes": [
+        "82e460748cc7",
+        "01303ea3f4d1"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "gateway",
+        "sleep/timeout",
+        "start-sleep",
+        "invés",
+        "usar",
+        "restart",
+        "mate",
+        "instâncias"
+      ]
+    },
+    "memory:memory/2026-04-20.md:95:114": {
+      "key": "memory:memory/2026-04-20.md:95:114",
+      "path": "memory/2026-04-20.md",
+      "startLine": 95,
+      "endLine": 114,
+      "source": "memory",
+      "snippet": "**Causa:** O Node.js v22+ prioriza conexões IPv6. Se o gateway está em uma rede onde a rota IPv6 para o Telegram é instável (comum em ISPs residenciais), ele tenta conectar várias vezes e espera o timeout de cada tentativa antes de desistir e usar o fallback IPv4. **Solução:** No seu `openclaw.json`, force o canal Telegram a ignorar a seleção automática de família: ```json { \"channels\": { \"telegram\": { \"network\": { \"autoSelectFamily\": false } } } } ``` ### ✅ Performance Final Consolidada Após aplicar todas as etapas (Bonjour = OFF, Hooks = OFF, Headless = TRUE, IPv6 = OFF), o gateway OpenClaw estabiliza (core + plugins) em **menos de 45 segundos**, servindo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.48493760526180263,
+      "maxScore": 0.48493760526180263,
+      "firstRecalledAt": "2026-04-21T15:29:50.407Z",
+      "lastRecalledAt": "2026-04-21T15:29:50.407Z",
+      "queryHashes": [
+        "82e460748cc7"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "gateway",
+        "network",
+        "node.js",
+        "openclaw.json",
+        "causa",
+        "v22",
+        "prioriza",
+        "conexões"
+      ]
+    },
+    "memory:memory/2026-04-20.md:79:112": {
+      "key": "memory:memory/2026-04-20.md:79:112",
+      "path": "memory/2026-04-20.md",
+      "startLine": 79,
+      "endLine": 112,
+      "source": "memory",
+      "snippet": "Se o log ficar parado longo tempo sem exibir `Browser control listening on http://127.0.0.1:18791/`, o culpado costuma ser a inicialização do sub-serviço do Chrome acoplado ao OpenClaw. **Causa:** No arquivo `openclaw.json`, o parâmetro `browser.headless` está como `false`. O Windows precisa alocar memória de vídeo e iniciar uma instância limpa visual do Chrome a cada restart. **Solução:** Se você não usa os \"Web Skills / Browser Actions\" do agente, ou se já usa a integração via CDP na porta 9000 externa, você pode desligar o browser interno: ```json { \"browser\": { \"enabled\": false } } ``` ## 6. Resiliência de Rede: Telegram & IPv6 **Sintoma:** Logs exibindo `fetch fallback: enab",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.47089956700801844,
+      "maxScore": 0.47089956700801844,
+      "firstRecalledAt": "2026-04-21T15:38:31.971Z",
+      "lastRecalledAt": "2026-04-21T15:38:31.971Z",
+      "queryHashes": [
+        "01303ea3f4d1"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "127.0.0.1",
+        "sub-serviço",
+        "openclaw.json",
+        "browser.headless",
+        "log",
+        "ficar",
+        "parado",
+        "longo"
+      ]
+    },
+    "memory:memory/2026-04-19.md:46:108": {
+      "key": "memory:memory/2026-04-19.md:46:108",
+      "path": "memory/2026-04-19.md",
+      "startLine": 46,
+      "endLine": 108,
+      "source": "memory",
+      "snippet": "- Captura via polling do DOM --- ## 📋 Próximos Passos 1. **Filtro de captura:** Melhorar para pegar só última resposta (atualmente pega tudo) 2. **Abertura correta:** Garantir que abre no workspace com chat, não Launchpad 3. **Fallbacks manter:** SendKeys original (funciona 1ª vez) 4. **Captura conversa inteira:** Feature adicional --- ## 🧠 Lições Aprendidas - CDP > SendKeys (mais robusto) - SendKeys funciona na 1ª vez, falha 2ª+ - `--remote-debugging-port` SEM o subcomando `chat` - Ctrl+Alt+Shift+C é o atalho correto do Antigravity --- ## 🤖 Missões Definidas (Planejamento) 1. **Guardião OpenClaw** — Atualizações, segurança, healthcheck 2. **Gestor Modelos** — Catálogo, tiers, cu",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.46785103678703305,
+      "maxScore": 0.46785103678703305,
+      "firstRecalledAt": "2026-04-22T23:34:03.316Z",
+      "lastRecalledAt": "2026-04-22T23:34:03.316Z",
+      "queryHashes": [
+        "1bb64f005ca6"
+      ],
+      "recallDays": [
+        "2026-04-22"
+      ],
+      "conceptTags": [
+        "remote-debugging-port",
+        "captura",
+        "via",
+        "polling",
+        "dom",
+        "próximos",
+        "passos",
+        "filtro"
       ]
     }
   }

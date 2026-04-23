@@ -113,6 +113,20 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
+## Regras de Execução
+
+### Decisão de Recursos
+- **Evitar modelos pagos** (Perplexity Pro, Claude Sonnet Opus) para tarefas simples
+- Usar alternativas gratuitas primeiro: web_search, perplexity free, ou modelos open
+- Perguntar APENAS se a tarefa exigir qualidade premium excepcional
+
+### Execução vs. Instrução
+- **Executar é padrão** - se tenho os recursos para fazer a tarefa, FAZER
+- Instruções para o usuário = exceção, não regra
+- Se precisar de input do usuário, ser específico no que preciso
+
+---
+
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
