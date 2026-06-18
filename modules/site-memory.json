@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-06-18",
+  "sites": {
+    "linkedin.com": {
+      "platform": "LinkedIn",
+      "patterns": {
+        "login_flow": "email → password → 2FA (email code)",
+        "onboarding": ["emailConfirmation", "ageCheck", "jobSeekerStatus", "photoUpload", "contactImport", "connectionSuggestions", "followSuggestions", "appDownload", "gamesNotification"],
+        "onboarding_skip_all": true,
+        "code_source": "email",
+        "code_expiry_minutes": 10
+      },
+      "selectors": {
+        "codeInput": "input[aria-label*='code']",
+        "continueButton": "button:has-text('Continue')",
+        "skipLink": "a:has-text('Skip')"
+      },
+      "tips": [
+        "Onboarding has ~10 steps, all skippable",
+        "Photo upload can be skipped",
+        "Connection suggestions can be skipped",
+        "Code is 6 digits, sent to email",
+        "Progress bar shows % completion"
+      ],
+      "interactions": 1
+    },
+    "instagram.com": {
+      "platform": "Instagram",
+      "patterns": {
+        "signup_flow": "email → password → birthday → name → username → verification code",
+        "login_flow": "email/username → password → 2FA (if suspicious)",
+        "code_source": "email",
+        "code_type": "6-digit verification",
+        "min_age": 18
+      },
+      "selectors": {
+        "emailInput": "input[name='emailOrPhone']",
+        "passwordInput": "input[name='password']",
+        "codeInput": "input[name='confirmationCode']"
+      },
+      "tips": [
+        "Signup requires birthday (must be 18+)",
+        "Username is checked in real-time",
+        "Codes arrive via email, not SMS by default",
+        "Notification permission can be skipped"
+      ],
+      "interactions": 1
+    },
+    "x.com": {
+      "platform": "X/Twitter",
+      "patterns": {
+        "login_flow": "email/phone → password → 2FA (optional)",
+        "posting": "compose → type → post button",
+        "reply": "click reply → type → send"
+      },
+      "selectors": {
+        "composeButton": "[data-testid='SideNav_NewTweet_Button']",
+        "tweetTextarea": "[data-testid='tweetTextarea_0']",
+        "tweetButton": "[data-testid='tweetButton']"
+      },
+      "tips": [
+        "Use browser automation for posting",
+        "Rate limits apply (don't spam)",
+        "Threads: post first tweet, then reply to self"
+      ],
+      "interactions": 0
+    },
+    "github.com": {
+      "platform": "GitHub",
+      "patterns": {
+        "login_flow": "username → password → 2FA (if enabled)",
+        "code_search": "search bar → filters → results"
+      },
+      "tips": [
+        "SSH keys don't work via browser",
+        "Use for: issues, PRs, code browsing, releases",
+        "Rate limit: 60 requests/hour for unauthenticated"
+      ],
+      "interactions": 0
+    },
+    "notion.so": {
+      "platform": "Notion",
+      "patterns": {
+        "login_flow": "email → magic link OR password",
+        "editing": "click block → type → Tab to next block"
+      },
+      "tips": [
+        "Rich text via CDP Input.insertText",
+        "Blocks are div-based, click to edit",
+        "Slash commands work: /heading, /bullet, etc."
+      ],
+      "interactions": 0
+    },
+    "mail.google.com": {
+      "platform": "Gmail",
+      "patterns": {
+        "login_flow": "email → password → 2FA (if enabled)",
+        "read_email": "click email row → read content",
+        "search": "search bar with operators (from:, subject:, etc.)"
+      },
+      "selectors": {
+        "searchBox": "input[aria-label='Search mail']",
+        "inboxLink": "a[href*='#inbox']"
+      },
+      "tips": [
+        "Labels: Primary, Promotions, Social, Updates, Spam",
+        "Check Spam for missing emails",
+        "Use search for specific senders"
+      ],
+      "interactions": 0
+    }
+  }
+}

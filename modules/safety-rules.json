@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-06-18",
+  "domain_blocklist": {
+    "description": "Domains where agent is READ-ONLY. Can snapshot/read but NEVER click, fill, or submit.",
+    "domains": {
+      "banking": {
+        "pattern": "*bank*|*banco*|*itau*|*bradesco*|*nubank*|*caixa*|*bb.com*|*chase*|*wellsfargo*|*bofa*",
+        "reason": "Financial data — read-only",
+        "examples": [
+          "itau.com.br", "bradesco.com.br", "nubank.com.br",
+          "caixa.gov.br", "bb.com.br", "chase.com",
+          "wellsfargo.com", "bankofamerica.com"
+        ]
+      },
+      "payments": {
+        "pattern": "*paypal*|*stripe*|*square*|*mercadopago*|*pagseguro*",
+        "reason": "Payment processing — read-only",
+        "examples": [
+          "paypal.com", "stripe.com", "squareup.com",
+          "mercadopago.com.br", "pagseguro.uol.com.br"
+        ]
+      },
+      "auth": {
+        "pattern": "accounts.google.com|okta.com|auth0.com|login.microsoftonline.com|identity.*",
+        "reason": "Authentication portals — never操作",
+        "examples": [
+          "accounts.google.com", "okta.com", "auth0.com",
+          "login.microsoftonline.com"
+        ]
+      },
+      "cloud_consoles": {
+        "pattern": "console.aws.amazon.com|console.cloud.google.com|portal.azure.com|cloud.google.com/console",
+        "reason": "Cloud infrastructure — catastrophic risk",
+        "examples": [
+          "console.aws.amazon.com",
+          "console.cloud.google.com",
+          "portal.azure.com"
+        ]
+      },
+      "government": {
+        "pattern": "*.gov.br|*.gov|receita.*|rfb.*|pgfn.*",
+        "reason": "Government/tax portals — legal risk",
+        "examples": [
+          "gov.br", "receita.fazenda.gov.br",
+          "cav.receita.fazenda.gov.br"
+        ]
+      },
+      "crypto_wallets": {
+        "pattern": "*metamask*|*phantom*|*trust-wallet*|*coinbase-wallet*",
+        "reason": "Crypto wallet operations — financial risk",
+        "examples": [
+          "metamask.io", "phantom.app", "trustwallet.com"
+        ]
+      }
+    }
+  },
+  "element_protection": {
+    "description": "Elements that are NEVER interacted with, regardless of domain.",
+    "password_fields": {
+      "selectors": [
+        "input[type='password']",
+        "input[name='password']",
+        "input[name='passwd']",
+        "input[autocomplete='current-password']",
+        "input[aria-label*='password' i]",
+        "input[aria-label*='senha' i]"
+      ],
+      "action": "ASK_USER",
+      "reason": "Password fields require manual input or explicit user instruction"
+    },
+    "payment_buttons": {
+      "keywords": [
+        "pay", "checkout", "purchase", "buy now", "place order",
+        "pagar", "comprar", "finalizar", "efetuar pagamento",
+        "comprar agora", "finalizar compra", "confirmar pagamento"
+      ],
+      "action": "BLOCK",
+      "reason": "Financial transactions require explicit confirmation"
+    },
+    "delete_actions": {
+      "keywords": [
+        "delete", "remove", "destroy", "unsubscribe", "cancel account",
+        "excluir", "remover", "cancelar conta", "desativar"
+      ],
+      "action": "CONFIRM",
+      "reason": "Destructive actions require user confirmation"
+    },
+    "send_actions": {
+      "keywords": [
+        "send", "submit", "publish", "post", "enviar", "publicar",
+        "publicar agora", "enviar mensagem"
+      ],
+      "action": "CONFIRM_UNLESS_PRE_AUTHORIZED",
+      "reason": "Outgoing actions need confirmation unless user pre-authorized"
+    }
+  },
+  "action_confirmation_rules": {
+    "always_confirm": [
+      "form_submission",
+      "email_send",
+      "message_send",
+      "data_deletion",
+      "account_setting_change",
+      "purchase",
+      "file_download_executable"
+    ],
+    "confirm_once_per_session": [
+      "repeated_form_same_type",
+      "bulk_operations"
+    ],
+    "never_confirm": [
+      "page_navigation",
+      "tab_management",
+      "snapshot_read",
+      "search_query",
+      "copy_text"
+    ]
+  },
+  "override_protocol": {
+    "description": "How user can override safety restrictions",
+    "domain_override": "User says 'I confirm this action on [domain]' → agent proceeds once",
+    "element_override": "User says 'fill this password field with [value]' → agent fills",
+    "bulk_override": "User says 'do not ask again for this session' → agent skips confirmation for current session only",
+    "emergency_stop": "User says 'STOP' or 'PARA' → agent halts all browser operations immediately"
+  }
+}
