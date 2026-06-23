@@ -1,0 +1,5 @@
+# Runtime data
+data/
+*.pyc
+__pycache__/
+.env

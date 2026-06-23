@@ -1,0 +1,110 @@
+{
+  "general": {
+    "hours": 24,
+    "language": "pt",
+    "max_items": 50,
+    "score_threshold": 5
+  },
+  "ai": {
+    "provider": "openrouter",
+    "model": "google/gemini-2.0-flash",
+    "scoring_prompt": "Score this news item from 0-10 for relevance to an AI marketing agency. Consider: novelty, impact, practical utility, and audience interest. Reply with just the number.",
+    "summary_prompt": "Summarize this news item in 2-3 sentences in Portuguese. Be concise and factual.",
+    "enrichment_prompt": "Provide brief context about the companies, technologies, or concepts mentioned in this news item. Be concise."
+  },
+  "sources": {
+    "hackernews": {
+      "enabled": true,
+      "category": "tech",
+      "threshold": 6,
+      "limit": 30,
+      "min_score": 100
+    },
+    "reddit": {
+      "enabled": true,
+      "category": "tech",
+      "threshold": 5,
+      "limit": 20,
+      "subreddits": [
+        "artificial",
+        "MachineLearning",
+        "LocalLLaMA",
+        "ChatGPT",
+        "singularity",
+        "SideProject"
+      ]
+    },
+    "twitter": {
+      "enabled": true,
+      "category": "ai_news",
+      "threshold": 6,
+      "limit": 20,
+      "users": [
+        "OpenAI",
+        "AnthropicAI",
+        "GoogleDeepMind",
+        "xaboratory",
+        "huaboratory",
+        "MetaAI"
+      ]
+    },
+    "rss": {
+      "enabled": true,
+      "feeds": [
+        {
+          "url": "https://hnrss.org/best?points=100",
+          "name": "HN Best",
+          "category": "tech"
+        },
+        {
+          "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+          "name": "TechCrunch AI",
+          "category": "ai_news"
+        },
+        {
+          "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+          "name": "Verge AI",
+          "category": "ai_news"
+        }
+      ],
+      "category": "tech",
+      "threshold": 5,
+      "limit": 30
+    },
+    "telegram": {
+      "enabled": false,
+      "channels": [],
+      "category": "news",
+      "threshold": 5,
+      "limit": 15
+    },
+    "github": {
+      "enabled": true,
+      "category": "releases",
+      "threshold": 6,
+      "repos": [
+        "openai",
+        "anthropics",
+        "google-deepmind",
+        "meta-llama",
+        "ollama",
+        "langchain-ai"
+      ],
+      "limit": 10
+    }
+  },
+  "delivery": {
+    "telegram": {
+      "enabled": true,
+      "chat_id": "908406251"
+    },
+    "file": {
+      "enabled": true,
+      "path": "data/briefings"
+    },
+    "memory": {
+      "enabled": true,
+      "save_to": "memory/briefings"
+    }
+  }
+}
