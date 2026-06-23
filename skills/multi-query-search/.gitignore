@@ -1,0 +1,4 @@
+# Multi-Query Search Skill
+*.log
+node_modules/
+.DS_Store
