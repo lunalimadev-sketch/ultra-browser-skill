@@ -2,6 +2,7 @@
 
 ## CLI & Scripts
 - **Google Workspace CLI:** `gws` v0.18.1 (instalado globalmente)
+- **Google Workspace Skill:** `workspace/skills/google-workspace/SKILL.md`
 - **Scripts de Tarefas:** `C:\Users\Luna\.openclaw\workspace\scripts\`
   - `registrar_task.ps1`
   - `atualizar_status.ps1`
@@ -20,6 +21,27 @@
 - **Shell:** PowerShell
 - **Node:** node=v24.13.0
 
+## 🚀 Providers de IA Gratuitos (Configurados)
+
+### Groq (05/Jul/2026) ✅
+- **Plugin:** `@openclaw/groq-provider` (habilitado)
+- **API Key:** `GROQ_API_KEY` no `.env`
+- **Modelos gratuitos:**
+  - `groq/qwen/qwen3-32b` — 500K TPD, 60 RPM ⭐
+  - `groq/meta-llama/llama-4-scout-17b-16e-instruct` — 500K TPD
+  - `groq/llama-3.1-8b-instruct` — 500K TPD
+  - `groq/openai/gpt-oss-120b` — 200K TPD
+- **Uso:** `groq/qwen/qwen3-32b` ou alias "Qwen3 32B (Groq)"
+- **Latência:** ~28ms (ultra-rápido)
+- **Fonte:** freellm.net
+- **⚠️ Limitações:**
+  - Qwen3 32B: NÃO funciona como subagent (system prompt pesado demais)
+  - Llama 4 Scout: funciona como subagent, mas lento (13m50s)
+  - MiMo V2.5 Free: funciona como subagent, mas muito lento (30m2s)
+  - GPT-OSS 120B: atinge rate limit do Groq
+- **Uso correto:** Tarefas via exec/curl, chat simples, fallback pra modelos maiores
+- **Para subagents:** usar apenas Llama 4 Scout ou MiMo quando velocidade não for crítica
+
 ## 🐦 Fluxo X/Twitter — INSTRUÇÕES OBRIGATÓRIAS
 
 Quando Dr. Roger enviar um tweet/link do X:
@@ -35,6 +57,8 @@ Quando Dr. Roger enviar um tweet/link do X:
 **Formato de entrega:** NÃO enviar prints/screenshot. Enviar APENAS resumo formatado com links dos posts publicados.
 
 **⚠️ Cuidado com ortografia:** SEMPRE revisar textos antes de postar. Exemplo de erro: "despensa" em vez de "despenca".
+
+**⚠️ DESLOP OBRIGATÓRIO:** SEMPRE aplicar a skill `deslop` antes de postar em redes sociais — limpar comentários óbvios, código defensivo desnecessário, e slop de AI do texto. Posts devem ser limpos, diretos, sem firula.
 
 ### 🔍 Checklist Red Flags (Posts Financeiros)
 Antes de reply em posts de "gurus" ou stock picks:
@@ -82,7 +106,8 @@ Antes de reply em posts de "gurus" ou stock picks:
 - **Atribuir:** Dwight para research inicial
 - **Dependências:** Criar subtasks para cada etapa do pipeline
 
-### Regras:
+### Regras Obrigatórias:
+- 🚫 **NUNCA inventar autores ou instituições.** O artigo é da agência. Usar "OpenClaw Agency" ou similar se precisar de autoria, nunca nomes fictícios.
 - SEMPRE verificar no Paperclip se há infos adicionais antes de criar issue
 - SEMPRE enviar URL do PDF para Taís quando gerado
 - NÃO pular etapas — pipeline é sequencial
@@ -114,3 +139,4 @@ Antes de reply em posts de "gurus" ou stock picks:
 - **Gemini:** `~/AppData\Roaming\npm\node_modules\openclaw\skills\gemini\SKILL.md`
 - **Antigravity Bridge:** `workspace/skills/antigravity/SKILL.md` ✅ READY
 - **Query Perplexity:** `workspace/skills/query-perplexity/SKILL.md`
+- **Humanizer:** `workspace/skills/humanizer/SKILL.md` ✅ READY
