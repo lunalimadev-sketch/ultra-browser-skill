@@ -15,7 +15,7 @@ Posta no X/Twitter. API oficial (xurl) é o método principal. Browser automatio
 
 ## Pre-Post Checklist (OBRIGATÓRIO)
 
-Before ANY public action, verify:
+Before ANY public action, verify ALL:
 
 1. **Login status:** `xurl auth status` — if not authenticated, STOP
 2. **Rate limits:** `xurl rate-limits` — check remaining tweets/hour
@@ -44,7 +44,7 @@ xurl tweet post --text "Your tweet text here"
 # Reply to tweet
 xurl tweet reply --tweet-id <ID> --text "Reply text"
 
-# Thread
+# Thread (up to 25 tweets)
 xurl tweet post --text "1/3 First tweet" --thread \
   --thread-text "2/3 Second tweet" \
   --thread-text "3/3 Third tweet"
@@ -58,7 +58,7 @@ xurl tweet delete --tweet-id <ID>
 
 ## Method 2: Browser Fallback
 
-When xurl is unavailable or rate-limited:
+When xurl unavailable or rate-limited:
 
 1. `browser action=start profile=openclaw`
 2. Navigate to `https://x.com/compose/post`
