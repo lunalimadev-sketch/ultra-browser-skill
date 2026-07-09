@@ -1,0 +1,114 @@
+---
+name: "deep-research"
+description: "Pesquisa profunda multi-fonte com relatórios citados. Workflow de 6 passos, 10 regras de qualidade, paralelização com subagentes."
+---
+
+# Deep Research — Pesquisa Profunda Multi-Fonte
+
+Produzir relatórios de pesquisa citados de múltiplas fontes web. Não é "googlar" — é síntese com atribuição de fontes.
+
+## Quando Ativar
+
+- Cliente pede pesquisa profunda sobre qualquer tema
+- Análise competitiva, avaliação de tecnologia, sizing de mercado
+- Due diligence de empresas, investidores ou tecnologias
+- Qualquer questão que exige síntese de múltiplas fontes
+- Palavras-chave: "pesquisar", "deep dive", "investigar", "estado atual de"
+
+## Workflow — 6 Passos
+
+### Passo 1: Entender o Objetivo
+Perguntar 1-2 perguntas rápidas:
+- "Seu objetivo é aprendizado, tomada de decisão, ou escrita?"
+- "Algum ângulo ou profundidade específica?"
+
+Se o cliente diz "só pesquisa" — seguir com defaults razoáveis.
+
+### Passo 2: Planejar a Pesquisa
+Dividir o tema em 3-5 sub-questões. Exemplo:
+- Tema: "Impacto da IA na saúde"
+  - Quais as principais aplicações de IA na saúde hoje?
+  - Quais resultados clínicos foram medidos?
+  - Quais os desafios regulatórios?
+  - Quais empresas lideram?
+  - Qual o tamanho de mercado e trajetória?
+
+### Passo 3: Executar Busca Multi-Fonte
+Para CADA sub-questão, buscar com as ferramentas disponíveis:
+- `web_search` com 2-3 variações de keyword
+- Misturar queries gerais e de notícias
+- Buscar 15-30 fontes únicas no total
+- Priorizar: acadêmicas, oficiais, notícias confiáveis > blogs > fóruns
+
+### Passo 4: Ler Fontes-Chave em Profundidade
+Para as URLs mais promissoras, buscar conteúdo completo.
+Ler 3-5 fontes-chave em profundidade. **Não confiar só em snippets.**
+
+### Passo 5: Sintetizar e Escrever Relatório
+
+Estrutura:
+```markdown
+# [Tema]: Relatório de Pesquisa
+*Gerado: [data] | Fontes: [N] | Confiança: [Alta/Média/Baixa]*
+
+## Resumo Executivo
+[3-5 frases com achados principais]
+
+## 1. [Primeiro Tema Principal]
+[Achados com citações inline]
+- Ponto-chave ([Nome da Fonte](url))
+- Dado de suporte ([Nome da Fonte](url))
+
+## 2. [Segundo Tema Principal]
+...
+
+## 3. [Terceiro Tema Principal]
+...
+
+## Principais Conclusões
+- [Insight acionável 1]
+- [Insight acionável 2]
+- [Insight acionável 3]
+
+## Fontes
+1. [Título](url) — [resumo de uma linha]
+2. ...
+
+## Metodologia
+Buscadas [N] queries em web e notícias. Analisadas [M] fontes.
+Sub-questões investigadas: [lista]
+```
+
+### Passo 6: Entregar
+- **Temas curtos:** Postar relatório completo no chat
+- **Relatórios longos:** Postar resumo executivo + conclusões, salvar arquivo completo
+
+## Regras de Qualidade (10)
+
+1. **Toda afirmação precisa de fonte.** Sem assertions não citadas.
+2. **Cross-reference.** Se só uma fonte diz, marcar como "não verificado".
+3. **Recência importa.** Preferir fontes dos últimos 12 meses.
+4. **Reconhecer gaps.** Se não encontrou info boa, dizer.
+5. **Sem alucinação.** Se não sabe, dizer "dados insuficientes encontrados".
+6. **Separar fato de inferência.** Marcar estimativas, projeções e opiniões.
+7. **Incluir evidência contrarian.** Não só evidência que confirma.
+8. **Números precisam de fonte.** Sem dados soltos.
+9. **Dados velhos = flagged.** Marcar explicitamente.
+10. **Decisão > resumo.** Traduzir achados em implicação acionável.
+
+## Paralelização com Subagentes
+
+Para temas amplos, paralelizar:
+- Agente 1: Sub-questões 1-2
+- Agente 2: Sub-questões 3-4
+- Agente 3: Sub-questão 5 + temas transversais
+
+Cada agente busca, lê fontes e retorna achados. Sessão principal sintetiza.
+
+## Anti-Patterns
+
+- Confiar em snippets sem ler a fonte completa
+- Tratar dados velhos como atuais sem flag
+- Fornecer resumo sem implicação acionável
+- Usar uma única fonte pra claim amplo
+- Marcar tudo como "alta confiança" sem evidência

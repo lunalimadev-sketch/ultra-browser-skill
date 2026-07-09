@@ -1,0 +1,146 @@
+---
+description: Agente especializado em redes sociais com capacidade de postar no X/Twitter via xurl CLI e browser automation
+---
+
+# AgenteRedesSociais
+
+Agente para postar no X/Twitter usando a **API oficial do X (xurl CLI)** como método principal e **browser automation** como fallback.
+
+## Status Atual
+
+- **Conta:** lunalimadev@gmail.com
+- **Método Principal:** xurl CLI (API oficial do X) - mais confiável
+- **Método Fallback:** Browser tool (OpenClaw)
+- **Login X:** Pendente (rate limit temporário)
+
+---
+
+## Método 1: xurl CLI (API Oficial do X) ✅ RECOMENDADO
+
+Usa o CLI oficial do X (mantido pela equipe X Developer Platform) para todas as operações via API v2.
+
+### Instalação
+
+```powershell
+npm install -g @xdevplatform/xurl
+xurl --help
+```
+
+### Setup Único (usuario faz manualmente)
+
+1. Crie/abra um app em https://developer.x.com/en/portal/dashboard
+2. Defina a redirect URI para `http://localhost:8080/callback`
+3. Copie o Client ID e Client Secret
+4. Registre o app:
+   ```powershell
+   xurl auth apps add my-app --client-id SEU_CLIENT_ID --client-secret SEU_CLIENT_SECRET
+   ```
+5. Autentique:
+   ```powershell
+   xurl auth oauth2 --app my-app
+   ```
+6. Defina como padrão:
+   ```powershell
+   xurl auth default my-app
+   ```
+7. Verifique:
+   ```powershell
+   xurl auth status
+   xurl whoami
+   ```
+
+### Comandos Úteis
+
+```powershell
+# Postar tweet
+xurl post "Seu conteudo aqui"
+
+# Postar com midia
+xurl media upload foto.jpg
+xurl post "Legenda" --media-id MEDIA_ID
+
+# Responder
+xurl reply TWEET_ID "Resposta"
+
+# Buscar
+xurl search "termo" -n 10
+
+# Ver timeline
+xurl timeline -n 20
+```
+
+### Segurança (NUNCA faça):
+- ❌ Nunca leia ou compartilhe `~/.xurl`
+- ❌ Nunca cole tokens no chat
+- ❌ Nunca use `--verbose`, `--bearer-token`, `--client-id` ou `--client-secret` em comandos de agente
+
+---
+
+## Método 2: Browser Automation (Fallback)
+
+Usa o browser tool do OpenClaw quando a CLI xurl não estiver disponível.
+
+### Fluxo Browser
+
+1. **Abrir browser** (profile openclaw)
+2. **Navegar** para `https://x.com`
+3. **Logar** com Google (lunalimadev@gmail.com)
+   - Clicar no iframe "Continue as Luna"
+   - Ou preencher email lunalimadev@gmail.com e clicar Continuar
+4. **Compor tweet**: Navegar para `https://x.com/compose/post`
+5. **Digitar conteúdo** no campo de texto
+6. **Postar**: Clicar no botão "Post"
+7. **Confirmar**: Capturar link do tweet postado
+
+### Dicas do Browser:
+
+- Entre cada ação, use `browser_snapshot` para pegar os refs atualizados
+- O preview do X mostra o limite de caracteres em tempo real
+- Se houver iframe do Google, clique no botão "Continue as Luna"
+- Após postar, o link aparece na notificação ou na timeline
+
+---
+
+## Método 3: Script PowerShell
+
+```powershell
+# Loga e valida o tweet
+.\skills\agente-redes-sociais\tweet.ps1 -TweetContent "Seu tweet aqui"
+```
+
+---
+
+## Prompt Padrão (Via Chat)
+
+Quando quiser tuitar algo, basta dizer:
+
+> **AgenteRedesSociais, tuitar: [seu conteúdo]**
+
+O agente irá:
+1. Validar (máx 280 caracteres)
+2. Priorizar método xurl (se instalado)
+3. Ou usar browser automation
+4. Postar e confirmar com link
+
+---
+
+## Limitações
+
+- **280 caracteres** por tweet (contas normais)
+- **25 tweets/dia** no modo não-verificado
+- **Rate limits** da API X (429 = aguardar)
+- **xurl** precisa de conta de desenvolvedor X e créditos (a partir de $5)
+- **Browser fallback** precisa da sessão logada
+
+---
+
+## Troubleshooting
+
+| Problema | Solução |
+|----------|---------|
+| Rate limit X | Aguardar 15-30 min |
+| Login não aparece | Tentar abrir x.com, clicar "Entrar", depois iframe Google |
+| xurl não encontrado | `npm install -g @xdevplatform/xurl` |
+| Erro 401 no xurl | Re-autenticar: `xurl auth oauth2 --app my-app` |
+| 403 no post | Token sem escopo - re-autenticar |
+| 429 no xurl | Aguardar rate limit passar

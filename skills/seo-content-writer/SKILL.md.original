@@ -1,0 +1,88 @@
+---
+name: "seo-content-writer"
+description: "SEO content writer atualizado com banned patterns de AI writing e quality gate rigoroso (padrões ECC)."
+---
+
+# SEO Content Writer — Atualização com Padrões ECC
+
+## Mudanças Propostas
+
+Adicionar ao SKILL.md existente:
+
+### 1. Seção de Banned Patterns (adicionar após "Core Philosophy")
+
+```markdown
+## Banned Patterns (Hard Bans)
+
+Deletar e reescrever QUALQUER ocorrência desses padrões. Eles sinalizam AI writing e destroem credibilidade:
+
+- "In today's rapidly evolving landscape"
+- "game-changer", "cutting-edge", "revolutionary", "world-class"
+- "here's why this matters" como ponte solitária
+- "No competitivo cenário atual"
+- Vulnerabilidade forçada
+- Pergunta final só pra engajamento
+- Preenchimento genérico que não move o argumento
+- "no fluff" (ironicamente é fluff)
+- CTAs genéricos ("saiba mais", "clique aqui")
+- Copy que funcionaria inalterado pra qualquer outro produto
+- "Excited to share"
+- Hooks de curiosidade falsa
+- Social proof hollow ("milhares confiam em nós")
+```
+
+### 2. Quality Gate Aprimorado (substituir existente)
+
+```markdown
+## Quality Gate — Checklist Final
+
+Antes de entregar QUALQUER conteúdo:
+
+### SEO
+- [ ] Keyword principal aparece 3-5x naturalmente
+- [ ] Title tag ≤60 chars com keyword
+- [ ] Meta description ≤155 chars com CTA
+- [ ] H1 único e claro
+- [ ] H2/H3 orgânicos cobrem subtopicas
+- [ ] URL curta e descritiva
+
+### Qualidade de Escrita
+- [ ] Zero banned patterns de AI writing
+- [ ] Primeiro parágrafo: hook + keyword natural
+- [ ] Parágrafos ≤4 frases
+- [ ] Pelo menos 1 dado/estatística citado com fonte
+- [ ] Especificidade > adjetivos em todo o texto
+- [ ] Cada seção acrescenta algo novo (não repete)
+
+### Conversão
+- [ ] CTA claro e específico (não genérico)
+- [ ] Conteúdo único (não duplicado de outro post)
+- [ ] Internal links pra 2-3 páginas relevantes
+- [ ] External links pra fontes autoritativas (mínimo 2)
+- [ ] Alt text descritivo em imagens (se aplicável)
+```
+
+### 3. Regra de Explicação (adicionar às Writing Rules)
+
+```markdown
+## Regra: Explicar DEPOIS do Exemplo
+
+**Nunca** explicar um conceito antes de mostrar um exemplo concreto.
+
+✅ "Como o Airbnb usou social proof: [exemplo]. O princípio por trás: [explicação]"
+❌ "O princípio de social proof é importante. Um exemplo é o Airbnb..."
+
+Isso se aplica a: conceitos, estratégias, técnicas, frameworks.
+```
+
+### 4. Referência Cross-Skill
+
+Adicionar seção "Related Skills":
+```markdown
+## Related Skills
+
+- `brand-voice` — Definir voz antes de escrever conteúdo
+- `hook-generator` — Criar hooks e títulos que capturam atenção
+- `marketing-campaign` — Planejar campanhas completas de conteúdo
+- `deep-research` — Pesquisa profunda pra artigos longos
+```
