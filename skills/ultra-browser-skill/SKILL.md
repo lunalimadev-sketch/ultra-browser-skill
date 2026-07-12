@@ -68,6 +68,113 @@ Full browser control for OpenClaw. Combines the best patterns from:
 
 ---
 
+## Real-Browser CDP Mode (Chrome já aberto do usuário)
+
+Por padrão a skill abre um navegador novo. Para tarefas onde o usuário já está
+logado (ex.: X, LinkedIn, painéis proprietários), conectar ao **Chrome real** via
+Chrome DevTools Protocol reaproveita cookies de sessão e evita login repetido.
+
+> **Fronteira de segurança (princípio do usuário, 2026-07-12):** o agente opera *como o humano*,
+> no navegador/sessão **próprios** do usuário e com a permissão dele. Ou seja, executa a mesma
+> tarefa que o humano faria — inclusive lidar naturalmente com um desafio (esperar ou resolvê-lo
+> como o humano faria) — sem cometer ilícito e sem prejudicar terceiros.
+> - Usamos o **Chrome real via CDP**: os sinais de automação (ex.: `navigator.webdriver`) já
+>   estão ausentes naturalmente — NÃO precisamos (nem devemos) forjá-los. Isso não é spoofing,
+>   é reaproveitar o browser genuíno do usuário.
+> - **Propósito do modo (esclarecido pelo usuário, 2026-07-12):** a automação serve a
+>   *evitar os excessos do Cloudflare* — i.e., operar normalmente quando a proteção gera
+>   falso-positivo e bloqueia o próprio usuário legítimo. Não é atacar a segurança alheia, é
+>   contornar o *erro* da defesa para executar a tarefa que o humano autorizou. O agente age
+>   como o humano faria ao se deparar com o bloqueio (esperar, resolver o desafio, recarregar,
+>   reautenticar) — nada além disso.
+> - O que NÃO fazemos: implantar ferramenta genérica de evasão anti-bot para prejudicar
+>   terceiros, forjar identidade do client (regra 5.7 da `agent-security-super-skill`), ou
+>   contornar proteção alheia para fins ilícitos.
+> Escopo legítimo: contas próprias do usuário (X, LinkedIn, painéis), seus sites, acessibilidade.
+
+### Setup (uma vez por máquina)
+```bash
+# Linux/macOS — mesmo user-data-dir do perfil padrão, porta de debug
+/google-chrome --remote-debugging-port=9222 \
+  --user-data-dir="$HOME/.config/google-chrome" --restore-last-session &
+# Windows (PowerShell)
+Start-Process chrome.exe -ArgumentList @('--remote-debugging-port=9222','--user-data-dir=C:\Users\<user>\AppData\Local\Google\Chrome\User Data')
+```
+> Usar o `user-data-dir` do perfil padrão para herdar login/cookies/extensões.
+> Nunca rodar em `headless` para esse modo (headless é o sinal nº1 de automação).
+
+### Connect (Python/Playwright)
+```python
+from playwright.async_api import async_playwright
+
+async def attach_real_chrome(cdp_url="http://localhost:9222"):
+    pw = await async_playwright().start()
+    browser = await pw.chromium.connect_over_cdp(cdp_url)
+    ctx = browser.contexts[0]          # perfil real já aberto
+    page = ctx.pages[0] if ctx.pages else await ctx.new_page()
+    return pw, browser, page
+```
+
+### Humanized input (estabilidade, não evasão)
+Algumas UIs quebram com `fill()` instantâneo ou cliques teleguiados. Movimento
+curvo + jitter e digitação caractere-a-caractere aumentam a taxa de sucesso em
+formulários reais — sem prometer contornar nenhuma defesa.
+```python
+import asyncio, random
+
+async def human_move(page, selector):
+    box = await page.locator(selector).bounding_box()
+    if not box: return
+    tx, ty = box["x"] + box["width"]/2, box["y"] + box["height"]/2
+    for i in range(random.randint(15, 30)):
+        t = i / 30
+        await page.mouse.move(tx*t + random.uniform(-3,3), ty*t + random.uniform(-3,3))
+        await asyncio.sleep(random.uniform(0.005, 0.02))
+    await asyncio.sleep(random.uniform(0.1, 0.3))
+
+async def human_click(page, selector):
+    await human_move(page, selector)
+    await page.click(selector, delay=random.randint(40, 120))
+
+async def human_type(page, selector, text):
+    await page.click(selector)
+    for ch in text:
+        await page.keyboard.type(ch)
+        base = 0.06 if ch != " " else 0.12
+        await asyncio.sleep(base + random.uniform(-0.02, 0.05))
+```
+
+### Challenge-wait graceful
+Se a página abrir um desafio (Cloudflare Turnstile, etc.) e a sessão real já é
+confiável, apenas aguarde a resolução em vez de interagir:
+```python
+async def wait_for_challenge(page, timeout_ms=15000):
+    try:
+        await page.wait_for_selector("iframe[src*='challenges.cloudflare.com']", timeout=3000)
+        await page.wait_for_load_state("networkidle", timeout=timeout_ms)
+    except Exception:
+        pass  # não havia challenge, segue o fluxo
+```
+> Se após a espera o desafio não resolver (CAPTCHA visual), PARE e notifique o
+> usuário via Telegram para resolver manualmente uma vez — não tente burlar.
+
+### Quando usar este modo
+- Automatizar **contas próprias** do usuário (X, LinkedIn, dashboards), com a permissão dele.
+- Preencher formulários longos onde `fill()` falha.
+- Testes/RPA em **próprios sites** do usuário.
+- Acessibilidade: executar a tarefa que o humano faria, na sessão dele.
+
+### Quando NÃO usar
+- Ferramenta genérica de evasão anti-bot contra sites de terceiros (finalidade ilícita).
+- Qualquer tarefa que exija forjar identidade do client (ver regra 5.7) ou contornar
+  proteção alheia para prejudicar terceiros.
+
+> **Princípio:** o agente age *como o humano*, no navegador próprio e com permissão do
+> usuário. Lidar com um desafio (esperar/resolver como o humano) faz parte da tarefa
+> legítima — não é ilícito, desde que o propósito seja a tarefa do próprio usuário.
+
+---
+
 ## Architecture
 
 ### The Agent Loop (4 Phases)
